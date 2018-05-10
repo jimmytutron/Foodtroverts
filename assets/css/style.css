@@ -1,0 +1,28 @@
+html, body {
+
+}
+
+.jumbotron {
+
+}
+
+#navbar{
+    float: right;
+} 
+
+.logo-image{
+    text-align: center;
+    margin-left: 60px;
+    margin-right: 160px;
+    padding: 30px;
+}
+
+.container {
+
+}
+
+a.navbar-brand {
+    text-align: center;
+    font-size: 10px;
+    
+}
