@@ -13,9 +13,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
     <!-- CSS -->
-    <!-- <link rel="stylesheet" type="text/css" href="assets/style.css"> -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
      <!-- Css BootStrap -->
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
 
     <!-- Firebase Reference -->
@@ -30,36 +30,35 @@
   </head>
 
   <body>
+ <!-- Sticky NavBar -->
+ <div id= "nav-bar">
+           
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        
+             <a class="navbar-brand" href="#"></a>
+             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+             </button>
+             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+               <div class="navbar-nav">
+                 <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+                 <a class="nav-item nav-link" href="#">About</a>
+                 <a class="nav-item nav-link" href="#">Contact</a>
+               </div>
+             </div>
+           </nav>
+         </div>
 
     <!-- JumboTron(Covers Whole page, inc NavBar) -->
     <div class="jumbotron jumbotron-fluid">
 
-          <!-- Sticky NavBar -->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#"><h1>FoodTroverts</h1></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="#"></a>
-                <a class="nav-item nav-link" href="#">Pricing</a>
-              </div>
-            </div>
-          </nav>
-
-
-
+      
+        <!-- Logo -->
+            <div class="logo-image">
+                    <img src="assets/images/logo.png" class="img-fluid" alt="Responsive logo image">
+                  </div>
 
             <div class="container">
-              <!-- <h1 class="display-4"> -->
-
-              </h1>
-              <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-          
-    
-
 
         <p>Hello it's me. * Adele's Voice *</p>
     
@@ -75,6 +74,12 @@
 <!-- 2 Divs close container, and Jumbotron  -->
 
 
+
+
+<!-- Sticky Bottom -->
+<nav class="navbar fixed-bottom navbar-light bg-light">
+        <a class="navbar-brand" href="#">© Copyright FoodTroverts</a>
+      </nav>
 
 
     <!-- JQuery -->
