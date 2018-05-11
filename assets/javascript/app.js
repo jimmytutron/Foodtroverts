@@ -16,41 +16,57 @@ $(document).ready(function () {
     var connectionsRef = database.ref("/connections");
     var connectedRef = database.ref(".info/connected");
 
+
+//button for city entry
+
+
     connectedRef.on("value", function (snap) {
         if (snap.val()) {
             var userObj = {};
 
             $("#submitPref").on("click", function (event) {
                 event.preventDefault();
-                
+
                 var userName = $("#userName").val().trim();
                 var userFoodPref = $("#foodPref").val().trim();
                 var userPrefTime = $("#timePref").val().trim();
-                console.log(userName);
-                console.log(userFoodPref);
-                console.log(userPrefTime);
+                var userLoc = $("#userLoc").val().trim();
+
+                userObj["name"] = userName;
+                userObj["preference"] = userFoodPref;
+                userObj["preference time"] = userPrefTime;
+                userObj["location"] = userLoc;
+
 
                 //=====IPStack=======/
                 $.get("http://api.ipstack.com/check?access_key=30d7443ccd61f6cddd884e4525271361", function (res) {
-                    userLocationInfo = res;
-                    // console.log("userLocationInfo:", userLocationInfo)
-                    currentCity = res["city"];
-                    userObj.location = currentCity;
-                    // console.log(currentCity);
+
+                    if (userLoc === "") {
+                        userLocationInfo = res;
+                        // console.log("userLocationInfo:", userLocationInfo)
+                        var currentCity = res["city"];
+                        userObj.location = currentCity;
+                    }
+
+                    console.log(userObj.location);
                     var con = connectionsRef.push(userObj);
 
 
                     //=====Google Places=======/
 
                     var authKey = "AIzaSyAZPAsF-Fb-C5lnhtkitRLjplX24zRkqeE";
-                    var city = currentCity;
-                    var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+" + city + "&key=" + authKey;
+                    var city = userObj["location"];
+                    var preference = userObj["preference"];
+                    var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + preference + " restaurants+in+" + city + "&key=" + authKey;
 
                     $.ajax({
                         url: queryURL,
                         method: "GET"
                     }).then(function (response) {
                         // console.log("Place ID: " + response.results[0].place_id);
+                        console.log(response.results[0]["name"]);
+                        console.log(response.results[0]["formatted_address"]);
+                        
                     });
 
 
