@@ -2,113 +2,124 @@
 
 <html lang="en-us">
 
-  <head>
+<head>
 
-    <meta charset="UTF-8">
-    <title>FoodTroverts</title>
+  <meta charset="UTF-8">
+  <title>FoodTroverts</title>
 
-    <!-- Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+  <!-- Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+    crossorigin="anonymous"></script>
 
-    <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-     <!-- Css BootStrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <!-- Css BootStrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+    crossorigin="anonymous">
 
 
-    <!-- Firebase Reference -->
+  <!-- Firebase Reference -->
   <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
 
-    <!-- Moment.js Reference -->
-    <!-- <script src="http://momentjs.com/downloads/moment.js"></script>  
+  <!-- Moment.js Reference -->
+  <!-- <script src="http://momentjs.com/downloads/moment.js"></script>  
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script> -->
 
-<!-- Google Fonts -->
+  <!-- Google Fonts -->
 
-  </head>
+</head>
 
-  <body>
- <!-- Sticky NavBar -->
- <div id= "nav-bar">
-           
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        
-             <a class="navbar-brand" href="#"></a>
-             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-               <span class="navbar-toggler-icon"></span>
-             </button>
-             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-               <div class="navbar-nav">
-                 <a class="nav-item nav-link active" href="#"> Home <span class="sr-only">(current)</span></a>
-                 <a class="nav-item nav-link" href="#"> About </a>
-                 <a class="nav-item nav-link" href="#"> Log-In </a>
-               </div>
-             </div>
-        </nav>
+<body>
+  <!-- Sticky NavBar -->
+  <div id="nav-bar">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+      <a class="navbar-brand" href="#"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="#"> Home
+            <span class="sr-only">(current)</span>
+          </a>
+          <a class="nav-item nav-link" href="#"> About </a>
+          <a class="nav-item nav-link" href="#"> Log-In </a>
+        </div>
+      </div>
+    </nav>
   </div>
 
-    <!-- JumboTron(Covers Whole page, inc NavBar) -->
-    <div class="jumbotron jumbotron-fluid">
+  <!-- JumboTron(Covers Whole page, inc NavBar) -->
+  <div class="jumbotron jumbotron-fluid">
 
-      
-        <!-- Logo -->
-  <div class="logo-image">
+
+    <!-- Logo -->
+    <div class="logo-image">
       <img src="assets/images/logo.png" class="img-fluid" alt="Responsive logo image">
-  </div>
-  <div class="container">
+    </div>
+    <div class="container">
 
       <div class="arrows">
-         <p class = 'arrow'> 
-           <img src="assets/images/downward-arrows.png" class="img-fluid" alt="Responsive arrows">
-         </p>
+        <p class='arrow'>
+          <img src="assets/images/downward-arrows.png" class="img-fluid" alt="Responsive arrows">
+        </p>
       </div>
 
       <!-- End of "page 1" -->
 
       <!-- Page 2 -->
       <div class="card">
-          <div class="card-body">
-            <!-- User Input: -->
+        <div class="card-body">
+          <!-- User Input: -->
           <div id="gsInput">
             <!-- input box here -->
-           <form>
+            <form>
               <div class="form-group">
                 <label for="userName">Who Are You?</label>
                 <input type="name" class="form-control" id="userName" aria-describedby="nameNote" placeholder="Your name here.">
                 <small id="nameNote" class="form-text text-muted"> Nicknames accepted for privacy purposes.</small>
               </div>
-                         
-               <!-- drop down for food selections -->
+
+              <!-- drop down for food selections -->
               <div class="dropdown">
-                  <p>What are you hungry for?</p>
-                  <select id="foodPref" class="custom-select">
+                <p>What are you hungry for?</p>
+                <select id="foodPref" class="custom-select">
 
-                      <option selected>Select</option>
-                      <option value="italian">Italian</option>
-                      <option value="french">French</option>
-                      <option value="german">German</option>
-                      <option value="japanese">Japanese</option>
+                  <option selected>Select</option>
+                  <option value="italian">Italian</option>
+                  <option value="french">French</option>
+                  <option value="german">German</option>
+                  <option value="indian">Indian</option>
+                  <option value="chinese">Chinese</option>
+                  <option value="japanese">Japanese</option>
+                  <option value="thai">Thai</option>
+                  <option value="american">American</option>
+                  <option value="mexican">Mexican</option>
+                </select>
+              </div>
 
-                    </select>
-                </div>
-             
-<br>
-                <!-- Dropdown 2 for meal - 'timePref' -->
+              <br>
+              <!-- Dropdown 2 for meal - 'timePref' -->
               <div class="dropdown2">
-                  <p>What is your preffered meal time?</p>
-                  <select id="timePref" class="custom-select">
+                <p>What is your preffered meal time?</p>
+                <select id="timePref" class="custom-select">
 
-                      <option selected>Select</option>
-                      <option value="breakfast">- Breakfast (7am - 11am)</option>
-                      <option value="lunch">- Lunch (11am - 5pm)</option>
-                      <option value="dinner">- Dinner (5pm - 9pm)</option>
+                  <option selected>Select</option>
+                  <option value="breakfast">- Breakfast (7am - 11am)</option>
+                  <option value="lunch">- Lunch (11am - 5pm)</option>
+                  <option value="dinner">- Dinner (5pm - 9pm)</option>
 
-                      </select>
-                </div>
+                </select>
+              </div>
 
- <br>   
+              <br>
               <div class="form-group">
                 <label for="currentLocation">What is your current location?</label>
                 <input type="location" class="form-control" id="userLoc" placeholder="Current Location">
@@ -117,9 +128,9 @@
               <button id="submitPref" class="btn btn-light">Lets Eat!</button>
             </form>
 
-          
+
           </div>
-        </div>  
+        </div>
       </div>
 
 
@@ -141,33 +152,31 @@
 
 
 
-<!-- Testing -->
-    <div id="testing">
+      <!-- Testing -->
+      <div id="testing">
+
+      </div>
+
 
     </div>
-
-
   </div>
-</div>
-<!-- 2 Divs close container, and Jumbotron  -->
+  <!-- 2 Divs close container, and Jumbotron  -->
 
 
-<!-- Sticky Bottom -->
-<nav class="navbar fixed-bottom navbar-light bg-light">
-        <a class="navbar-brand" href="#">© Copyright FoodTroverts</a>
-      </nav>
+  <!-- Sticky Bottom -->
+  <nav class="navbar fixed-bottom navbar-light bg-light">
+    <a class="navbar-brand" href="#">© Copyright FoodTroverts</a>
+  </nav>
 
 
-    <!-- JQuery -->
+  <!-- JQuery -->
 
-    <script
-    src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
 
-    <!-- JavaScript -->
-    <script src="assets/javascript/app.js"></script>
+  <!-- JavaScript -->
+  <script src="assets/javascript/app.js"></script>
 
-  </body>
+</body>
 
 </html>
