@@ -11,11 +11,9 @@ $(document).ready(function () {
 
     $.ajax({
         url: queryURL,
-        method: "GET",
-        dataType: 'jsonp',
-        cache: false
+        method: "GET"
     }).then(function (response) {
-        console.log(response);
+        console.log("Address = " + response.results[0].formatted_address);
 
     });
 
