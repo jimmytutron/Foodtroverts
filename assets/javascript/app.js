@@ -1,21 +1,62 @@
 $(document).ready(function () {
-    //=========================GLOBAL===============================//
+//=========================GLOBAL===============================//
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDQhnkQVQxYFIzpHHe3f9j46KYowZpgGRg",
+    authDomain: "foodtroverts-1525972295801.firebaseapp.com",
+    databaseURL: "https://foodtroverts-1525972295801.firebaseio.com",
+    projectId: "foodtroverts-1525972295801",
+    storageBucket: "",
+    messagingSenderId: "945445095089"
+  };
+  firebase.initializeApp(config);
+
+  var database = firebase.database();
+
+  var connectionsRef = database.ref("/connections");
+  var connectedRef = database.ref(".info/connected");
+
+  connectedRef.on("value", function(snap){
+    if (snap.val()){
+        var con = connectionsRef.push(true);
+        con.onDisconnect().remove();
+    }
+  });
 
 
-    // event.preventDefault();
 
+//=====IPStack=======/
+    $.get("http://api.ipstack.com/check?access_key=30d7443ccd61f6cddd884e4525271361", function (res) {
+        userLocationInfo = res;
+        // console.log("userLocationInfo:", userLocationInfo)
+        currentCity = res["city"];
+        // console.log(currentCity);
 
     var authKey = "AIzaSyAZPAsF-Fb-C5lnhtkitRLjplX24zRkqeE";
-    var city = "San Francisco";
+    var city = currentCity;
     var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+" + city + "&key=" + authKey;
 
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-        console.log("Address = " + response.results[0].formatted_address);
-
+        console.log("Place ID: " + response.results[0].place_id);
     });
+
+    }, "jsonp");
+
+
+//=====Google Places=======/
+    // var authKey = "AIzaSyAZPAsF-Fb-C5lnhtkitRLjplX24zRkqeE";
+    // var city = currentCity;
+    // var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+" + city + "&key=" + authKey;
+
+    // $.ajax({
+    //     url: queryURL,
+    //     method: "GET"
+    // }).then(function (response) {
+    //     console.log("Address = " + response.results[0].formatted_address);
+    // });
 
 
 
@@ -23,13 +64,8 @@ $(document).ready(function () {
 
 
     
-//=====Section below for ipstack is working.=======/
-    // $.get("http://api.ipstack.com/check?access_key=30d7443ccd61f6cddd884e4525271361", function (res) {
-    //     userLocationInfo = res;
-    //     console.log("userLocationInfo:", userLocationInfo)
-    //     currentCity = res["city"];
-    //     console.log(currentCity);
-    // }, "jsonp");
+
+
 
 
 
