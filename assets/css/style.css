@@ -1,9 +1,4 @@
-html, body {
-}
 
-.jumbotron{
-
-}
 
 a.nav-item.nav-link.active {
     text-align: center;
@@ -17,8 +12,7 @@ a.nav-item.nav-link.active {
 }
 
 
-.container {
-}
+
 
 /* footer */
 a.navbar-brand {
@@ -48,3 +42,10 @@ a.navbar-brand {
     width: 35%;
 }
 
+#searchingRest{
+    text-align: center;
+}
+
+#buddyResults{
+    text-align: center;
+}
