@@ -41,39 +41,123 @@
              </button>
              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                <div class="navbar-nav">
-                 <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                 <a class="nav-item nav-link" href="#">About</a>
-                 <a class="nav-item nav-link" href="#">Contact</a>
+                 <a class="nav-item nav-link active" href="#"> Home <span class="sr-only">(current)</span></a>
+                 <a class="nav-item nav-link" href="#"> About </a>
+                 <a class="nav-item nav-link" href="#"> Log-In </a>
                </div>
              </div>
-           </nav>
-         </div>
+        </nav>
+  </div>
 
     <!-- JumboTron(Covers Whole page, inc NavBar) -->
     <div class="jumbotron jumbotron-fluid">
 
       
         <!-- Logo -->
-            <div class="logo-image">
-                    <img src="assets/images/logo.png" class="img-fluid" alt="Responsive logo image">
+  <div class="logo-image">
+      <img src="assets/images/logo.png" class="img-fluid" alt="Responsive logo image">
+  </div>
+  <div class="container">
+
+      <div class="arrows">
+         <p class = 'arrow'> 
+           <img src="assets/images/downward-arrows.png" class="img-fluid" alt="Responsive arrows">
+         </p>
+      </div>
+
+      <!-- End of "page 1" -->
+
+      <!-- Page 2 -->
+      <div class="card">
+          <div class="card-body">
+            User Input:
+          <div id="gsInput">
+            <!-- input box here -->
+           <form>
+              <div class="form-group">
+                <label for="userName">Who Are You?</label>
+                <input type="name" class="form-control" id="userName" aria-describedby="nameNote" placeholder="Your name here.">
+                <small id="nameNote" class="form-text text-muted"> Nicknames accepted for privacy purposes.</small>
+              </div>
+                         
+              
+              <div class="dropdown">
+                  <p>What are you hungry for?</p>
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="foodPref" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="foodPref">
+                    <button class="dropdown-item" type="button">Action</button>
+                    <button class="dropdown-item" type="button">Another action</button>
+                    <button class="dropdown-item" type="button">Something else here</button>
                   </div>
-
-            <div class="container">
-
-        <!-- <p>Hello it's me. * Adele's Voice *</p> -->
+                </div>
+              <!-- drop down for food selections -->
+<br>
+              <p>What is your preffered meal time?</p>
+              <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="timePref" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="timePref">
+                    <button class="dropdown-item" type="button">Breakfast</button>
+                    <button class="dropdown-item" type="button">Lunch</button>
+                    <button class="dropdown-item" type="button">Dinner</button>
+                  </div>
+                </div>
+              <!-- drop down(??) here, B/L/D -->
     
-      
+
+              <div class="form-group">
+                <label for="currentLocation">What is your current location?</label>
+                <input type="location" class="form-control" id="userLoc" placeholder="Current Location">
+              </div>
+
+              <button id="submitPref" class="btn btn-light">Lets Eat!</button>
+            </form>
+
+
+
+
+
+
+
+         
+         
+
+          
+          </div>
+        </div>  
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- Testing -->
     <div id="testing">
 
     </div>
 
 
-</div>
+  </div>
 </div>
 <!-- 2 Divs close container, and Jumbotron  -->
-
-
 
 
 <!-- Sticky Bottom -->

@@ -1,14 +1,13 @@
 html, body {
+}
+
+.jumbotron{
 
 }
 
-.jumbotron {
-
+a.nav-item.nav-link.active {
+    text-align: center;
 }
-
-#navbar{
-    float: right;
-} 
 
 .logo-image{
     text-align: center;
@@ -17,12 +16,24 @@ html, body {
     padding: 30px;
 }
 
-.container {
 
+.container {
 }
 
+/* footer */
 a.navbar-brand {
     text-align: center;
     font-size: 10px;
     
+}
+
+.arrow{
+    padding-top: 40px;
+    font-size: 90px;
+    text-align: center;
+}
+
+#gettingStarted{
+    background-color: orange;
+    /* width: 100%; */
 }
