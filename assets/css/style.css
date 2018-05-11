@@ -37,6 +37,13 @@ a.navbar-brand {
     width: 25%;
 }
 
+#foodPref {
+    width: 30%;
+}
+
+#timePref {
+    width: 30%;
+}
 #userLoc {
     width: 35%;
 }

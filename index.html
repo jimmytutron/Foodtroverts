@@ -70,7 +70,7 @@
       <!-- Page 2 -->
       <div class="card">
           <div class="card-body">
-            User Input:
+            <!-- User Input: -->
           <div id="gsInput">
             <!-- input box here -->
            <form>
@@ -80,33 +80,34 @@
                 <small id="nameNote" class="form-text text-muted"> Nicknames accepted for privacy purposes.</small>
               </div>
                          
-              
+               <!-- drop down for food selections -->
               <div class="dropdown">
                   <p>What are you hungry for?</p>
                   <select id="foodPref" class="custom-select">
 
                       <option selected>Select</option>
-                      <option value="1">Italian</option>
-                      <option value="2">French</option>
-                      <option value="3">German</option>
-                      <option value="4">Japanese</option>
+                      <option value="italian">Italian</option>
+                      <option value="french">French</option>
+                      <option value="german">German</option>
+                      <option value="japanese">Japanese</option>
 
                     </select>
                 </div>
-              <!-- drop down for food selections -->
+             
 <br>
-              <p>What is your preffered meal time?</p>
-              <div class="dropdown">
-                  <button class="btn btn-light dropdown-toggle" type="button" id="timePref" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                   Select
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="timePref">
-                    <button class="dropdown-item" type="button">- Breakfast</button>
-                    <button class="dropdown-item" type="button">- Lunch</button>
-                    <button class="dropdown-item" type="button">- Dinner</button>
-                  </div>
+                <!-- Dropdown 2 for meal - 'timePref' -->
+              <div class="dropdown2">
+                  <p>What is your preffered meal time?</p>
+                  <select id="timePref" class="custom-select">
+
+                      <option selected>Select</option>
+                      <option value="breakfast">- Breakfast (7am - 11am)</option>
+                      <option value="lunch">- Lunch (11am - 5pm)</option>
+                      <option value="dinner">- Dinner (5pm - 9pm)</option>
+
+                      </select>
                 </div>
-              <!-- drop down(??) here, B/L/D -->
+
  <br>   
               <div class="form-group">
                 <label for="currentLocation">What is your current location?</label>
