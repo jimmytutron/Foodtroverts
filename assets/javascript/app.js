@@ -18,10 +18,12 @@ $(document).ready(function () {
 
   connectedRef.on("value", function(snap){
     if (snap.val()){
-        var con = connectionsRef.push(true);
-        con.onDisconnect().remove();
-    }
-  });
+        var userObj = {};
+        var currUserNumb = 1;
+
+        userObj.userNumb = currUserNumb;
+
+
 
 
 
@@ -30,7 +32,12 @@ $(document).ready(function () {
         userLocationInfo = res;
         // console.log("userLocationInfo:", userLocationInfo)
         currentCity = res["city"];
+        userObj.location = currentCity;
         // console.log(currentCity);
+        var con = connectionsRef.push(userObj);
+
+
+//=====Google Places=======/
 
     var authKey = "AIzaSyAZPAsF-Fb-C5lnhtkitRLjplX24zRkqeE";
     var city = currentCity;
@@ -40,23 +47,13 @@ $(document).ready(function () {
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-        console.log("Place ID: " + response.results[0].place_id);
+        // console.log("Place ID: " + response.results[0].place_id);
     });
 
-    }, "jsonp");
 
 
-//=====Google Places=======/
-    // var authKey = "AIzaSyAZPAsF-Fb-C5lnhtkitRLjplX24zRkqeE";
-    // var city = currentCity;
-    // var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+" + city + "&key=" + authKey;
 
-    // $.ajax({
-    //     url: queryURL,
-    //     method: "GET"
-    // }).then(function (response) {
-    //     console.log("Address = " + response.results[0].formatted_address);
-    // });
+
 
 
 
@@ -95,4 +92,8 @@ $(document).ready(function () {
 
 
     //=====================Lena (END)=============================//
+            con.onDisconnect().remove();
+                }, "jsonp");
+    }
+  });
 });
