@@ -83,31 +83,31 @@
               
               <div class="dropdown">
                   <p>What are you hungry for?</p>
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="foodPref" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="foodPref">
-                    <button class="dropdown-item" type="button">Action</button>
-                    <button class="dropdown-item" type="button">Another action</button>
-                    <button class="dropdown-item" type="button">Something else here</button>
-                  </div>
+                  <select id="foodPref" class="custom-select">
+
+                      <option selected>Select</option>
+                      <option value="1">Italian</option>
+                      <option value="2">French</option>
+                      <option value="3">German</option>
+                      <option value="4">Japanese</option>
+
+                    </select>
                 </div>
               <!-- drop down for food selections -->
 <br>
               <p>What is your preffered meal time?</p>
               <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="timePref" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
+                  <button class="btn btn-light dropdown-toggle" type="button" id="timePref" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   Select
                   </button>
                   <div class="dropdown-menu" aria-labelledby="timePref">
-                    <button class="dropdown-item" type="button">Breakfast</button>
-                    <button class="dropdown-item" type="button">Lunch</button>
-                    <button class="dropdown-item" type="button">Dinner</button>
+                    <button class="dropdown-item" type="button">- Breakfast</button>
+                    <button class="dropdown-item" type="button">- Lunch</button>
+                    <button class="dropdown-item" type="button">- Dinner</button>
                   </div>
                 </div>
               <!-- drop down(??) here, B/L/D -->
-    
-
+ <br>   
               <div class="form-group">
                 <label for="currentLocation">What is your current location?</label>
                 <input type="location" class="form-control" id="userLoc" placeholder="Current Location">
@@ -115,15 +115,6 @@
 
               <button id="submitPref" class="btn btn-light">Lets Eat!</button>
             </form>
-
-
-
-
-
-
-
-         
-         
 
           
           </div>

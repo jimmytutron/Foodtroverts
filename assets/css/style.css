@@ -33,7 +33,11 @@ a.navbar-brand {
     text-align: center;
 }
 
-#gettingStarted{
-    background-color: orange;
-    /* width: 100%; */
+#userName {
+    width: 25%;
 }
+
+#userLoc {
+    width: 35%;
+}
+
