@@ -38,12 +38,12 @@ $(document).ready(function () {
                 userObj["location"] = userLoc;
 
 
-                //=====IPStack=======/
-                $.get("http://api.ipstack.com/check?access_key=30d7443ccd61f6cddd884e4525271361", function (res) {
+                //=====IPData=======/
+                $.get("https://api.ipdata.co/", function (res) {
 
                     if (userLoc === "") {
                         userLocationInfo = res;
-                        // console.log("userLocationInfo:", userLocationInfo)
+                        console.log("userLocationInfo:", userLocationInfo)
                         var currentCity = res["city"];
                         userObj.location = currentCity;
                     }
