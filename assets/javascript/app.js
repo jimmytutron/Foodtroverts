@@ -85,34 +85,35 @@ $(document).ready(function () {
 
             });
 
-            connectionsRef.on("value", function (snap) {
-                userObj["user Number"] = snap.numChildren();
-                console.log("number children" + userObj["user Number"])
-            })
-            
-            
+
+
             $(document).on("click", ".restSelected", function () {
                 //push id into object
                 userObj["rest ID"] = $(".restSelected").attr('data-id');
 
-
                 console.log(userObj);
                 var con = connectionsRef.push(userObj);
+                var newID = con.getKey();
+
                 //Cycling through current connections, however it is currently including the user from above due to "connectionsRef.push(userObj)"
                 //May need to create a unique number ID as part of the object prior to push.
                 database.ref("/connections").on("child_added", function (childSnapshot) {
 
                     var matchID = "";
 
-                    matchID = childSnapshot.val()["rest ID"];
+                    matchRestID = childSnapshot.val()["rest ID"];
+                    matchUniqueID = childSnapshot.key;
+                    // console.log(userObj["rest ID"]);
+                    // console.log(matchRestID);
+                    // console.log(newID);
+                    // console.log(matchUniqueID);
 
-                    if (matchID === userObj["rest ID"] && userObj["user Number"] != childSnapshot.val()["user Number"]) {
+                    if ((matchRestID === userObj["rest ID"]) && (newID !== matchUniqueID)) {
                         console.log("WOOOHOOO")
-                    }
+                    } else {
 
-                    // console.log(childSnapshot.val());
-                    // console.log(childSnapshot.val()["name"]);
-                    // console.log(childSnapshot.val()["preference"])
+                        console.log("sorry no match yet :(")
+                    }
 
                 })
                 con.onDisconnect().remove();
