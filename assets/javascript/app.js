@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     //=========================GLOBAL===============================//
     // Initialize Firebase
     var config = {
@@ -20,10 +20,10 @@ $(document).ready(function() {
     //button for city entry
 
 
-    connectedRef.on("value", function(snap) {
+    connectedRef.on("value", function (snap) {
         var userObj = {};
         if (snap.val()) {
-            $("#submitPref").on("click", function(event) {
+            $("#submitPref").on("click", function (event) {
                 event.preventDefault();
 
                 var userName = $("#userName").val().trim();
@@ -38,7 +38,7 @@ $(document).ready(function() {
 
 
                 //=====IPData=======/
-                $.get("https://api.ipdata.co/", function(res) {
+                $.get("https://api.ipdata.co/", function (res) {
 
                     if (userLoc === "") {
                         userLocationInfo = res;
@@ -55,7 +55,7 @@ $(document).ready(function() {
                     $.ajax({
                         url: queryURL,
                         method: "GET"
-                    }).then(function(response) {
+                    }).then(function (response) {
                         // console.log("Place ID: " + response.results[0].place_id);
                         var results = response.results
 
@@ -85,23 +85,38 @@ $(document).ready(function() {
 
             });
 
-
-        $(document).on("click", ".restSelected", function() {
-            //push id into object
-            userObj["rest ID"] = $(".restSelected").attr('data-id');
-            console.log(userObj);
-            var con = connectionsRef.push(userObj);
-            //Cycling through current connections, however it is currently including the user from above due to "connectionsRef.push(userObj)"
-            //May need to create a unique number ID as part of the object prior to push.
-            database.ref("/connections").on("child_added", function(childSnapshot) {
-
-                // console.log(childSnapshot.val());
-                // console.log(childSnapshot.val()["name"]);
-                // console.log(childSnapshot.val()["preference"])
-
+            connectionsRef.on("value", function (snap) {
+                userObj["user Number"] = snap.numChildren();
+                console.log("number children" + userObj["user Number"])
             })
-            con.onDisconnect().remove();
-        });
+            
+            
+            $(document).on("click", ".restSelected", function () {
+                //push id into object
+                userObj["rest ID"] = $(".restSelected").attr('data-id');
+
+
+                console.log(userObj);
+                var con = connectionsRef.push(userObj);
+                //Cycling through current connections, however it is currently including the user from above due to "connectionsRef.push(userObj)"
+                //May need to create a unique number ID as part of the object prior to push.
+                database.ref("/connections").on("child_added", function (childSnapshot) {
+
+                    var matchID = "";
+
+                    matchID = childSnapshot.val()["rest ID"];
+
+                    if (matchID === userObj["rest ID"] && userObj["user Number"] != childSnapshot.val()["user Number"]) {
+                        console.log("WOOOHOOO")
+                    }
+
+                    // console.log(childSnapshot.val());
+                    // console.log(childSnapshot.val()["name"]);
+                    // console.log(childSnapshot.val()["preference"])
+
+                })
+                con.onDisconnect().remove();
+            });
         }
 
     });
