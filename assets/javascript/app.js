@@ -17,7 +17,7 @@ $(document).ready(function () {
     var connectedRef = database.ref(".info/connected");
 
 
-//button for city entry
+    //button for city entry
 
 
     connectedRef.on("value", function (snap) {
@@ -66,7 +66,25 @@ $(document).ready(function () {
                         // console.log("Place ID: " + response.results[0].place_id);
                         console.log(response.results[0]["name"]);
                         console.log(response.results[0]["formatted_address"]);
-                        
+                        var results = response.results
+
+                        for (var i = 0; i < 5; i++) {
+                            console.log(results[i]["name"]);
+                            var restDiv = $('<div>');
+                            var restNameTag = $('<h1>');
+                            var restAddress = $('<p>');
+                            var address = results[i]["formatted_address"];
+                            var restName = results[i]["name"];
+
+                            restNameTag.text(restName);
+                            restAddress.text(address);
+
+                            restDiv.append(restName);
+                            restDiv.append(restAddress);
+                            $('#restaurantP').append(restDiv);
+
+                        }
+
                     });
 
 
