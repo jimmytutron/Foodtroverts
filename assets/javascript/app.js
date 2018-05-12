@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
     //=========================GLOBAL===============================//
     // Initialize Firebase
     var config = {
@@ -20,11 +20,10 @@ $(document).ready(function () {
     //button for city entry
 
 
-    connectedRef.on("value", function (snap) {
+    connectedRef.on("value", function(snap) {
+        var userObj = {};
         if (snap.val()) {
-            var userObj = {};
-
-            $("#submitPref").on("click", function (event) {
+            $("#submitPref").on("click", function(event) {
                 event.preventDefault();
 
                 var userName = $("#userName").val().trim();
@@ -39,19 +38,13 @@ $(document).ready(function () {
 
 
                 //=====IPData=======/
-                $.get("https://api.ipdata.co/", function (res) {
+                $.get("https://api.ipdata.co/", function(res) {
 
                     if (userLoc === "") {
                         userLocationInfo = res;
-                        console.log("userLocationInfo:", userLocationInfo)
                         var currentCity = res["city"];
                         userObj.location = currentCity;
                     }
-
-                    console.log(userObj.location);
-                    var con = connectionsRef.push(userObj);
-
-
                     //=====Google Places=======/
 
                     var authKey = "AIzaSyAZPAsF-Fb-C5lnhtkitRLjplX24zRkqeE";
@@ -62,14 +55,11 @@ $(document).ready(function () {
                     $.ajax({
                         url: queryURL,
                         method: "GET"
-                    }).then(function (response) {
+                    }).then(function(response) {
                         // console.log("Place ID: " + response.results[0].place_id);
-                        console.log(response.results[0]["name"]);
-                        console.log(response.results[0]["formatted_address"]);
                         var results = response.results
 
                         for (var i = 0; i < 5; i++) {
-                            console.log(results[i]["name"]);
                             var restDiv = $('<div>');
                             var restNameTag = $('<h1>');
                             var restAddress = $('<p>');
@@ -77,6 +67,7 @@ $(document).ready(function () {
                             var restName = results[i]["name"];
 
                             restDiv.addClass('restSelected');
+                            restDiv.attr('data-id', results[i]['id']);
                             restNameTag.text(restName);
                             restAddress.text(address);
 
@@ -87,7 +78,6 @@ $(document).ready(function () {
                         }
 
 
-                        con.onDisconnect().remove();
                     }, "jsonp");
                 });
 
@@ -96,49 +86,48 @@ $(document).ready(function () {
             });
 
 
+        $(document).on("click", ".restSelected", function() {
+            //push id into object
+            userObj["rest ID"] = $(".restSelected").attr('data-id');
+            console.log(userObj);
+            var con = connectionsRef.push(userObj);
+            //Cycling through current connections, however it is currently including the user from above due to "connectionsRef.push(userObj)"
+            //May need to create a unique number ID as part of the object prior to push.
+            database.ref("/connections").on("child_added", function(childSnapshot) {
 
+                // console.log(childSnapshot.val());
+                // console.log(childSnapshot.val()["name"]);
+                // console.log(childSnapshot.val()["preference"])
+
+            })
+            con.onDisconnect().remove();
+        });
         }
 
     });
-
-    
-    $(document).on("click", ".restSelected", function () {
-        //Cycling through current connections, however it is currently including the user from above due to "connectionsRef.push(userObj)"
-        //May need to create a unique number ID as part of the object prior to push.
-        database.ref("/connections").on("child_added", function (childSnapshot) {
-
-            console.log(childSnapshot.val());
-            console.log(childSnapshot.val()["name"]);
-            console.log(childSnapshot.val()["preference"])
-
-        })
-    });
-
-
-    
 });
 
 
 
 
-                //=====================GLOBAL (END)=============================//
-                //=========================Jimmy===============================//
+//=====================GLOBAL (END)=============================//
+//=========================Jimmy===============================//
 
 
 
 
 
 
-                //=====================Jimmy (END)=============================//
-                //=========================Eric===============================//
+//=====================Jimmy (END)=============================//
+//=========================Eric===============================//
 
 
 
 
 
 
-                //=====================Eric (END)=============================//
-                //=========================Lena===============================//
+//=====================Eric (END)=============================//
+//=========================Lena===============================//
 
 
 
@@ -146,5 +135,4 @@ $(document).ready(function () {
 
 
 
-                //=====================Lena (END)=============================//
-
+//=====================Lena (END)=============================//
