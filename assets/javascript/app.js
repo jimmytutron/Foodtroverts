@@ -85,6 +85,15 @@ $(document).ready(function () {
 
                         }
 
+                        //Cycling through current connections, however it is currently including the user from above due to "connectionsRef.push(userObj)"
+                        //May need to create a unique number ID as part of the object prior to push.
+                        database.ref("/connections").on("child_added", function(childSnapshot){
+                            
+                            console.log(childSnapshot.val());
+                            console.log(childSnapshot.val()["name"]);
+                            console.log(childSnapshot.val()["preference"])
+
+                        })
                     });
 
 
