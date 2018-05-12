@@ -94,7 +94,7 @@ $(document).ready(function () {
                 console.log(userObj);
                 var con = connectionsRef.push(userObj);
                 var newID = con.getKey();
-
+                var userMatched = false;
                 //Cycling through current connections, however it is currently including the user from above due to "connectionsRef.push(userObj)"
                 //May need to create a unique number ID as part of the object prior to push.
                 database.ref("/connections").on("child_added", function (childSnapshot) {
@@ -108,10 +108,10 @@ $(document).ready(function () {
                     // console.log(newID);
                     // console.log(matchUniqueID);
 
-                    if ((matchRestID === userObj["rest ID"]) && (newID !== matchUniqueID)) {
+                    if ((matchRestID === userObj["rest ID"]) && (newID !== matchUniqueID) && (userMatched === false)) {
                         console.log("WOOOHOOO")
-                    } else {
-
+                        userMatched = true;
+                    } else if (userMatched === false){
                         console.log("sorry no match yet :(")
                     }
 
