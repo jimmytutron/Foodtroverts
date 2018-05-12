@@ -76,6 +76,7 @@ $(document).ready(function () {
                             var address = results[i]["formatted_address"];
                             var restName = results[i]["name"];
 
+                            restDiv.addClass('restSelected');
                             restNameTag.text(restName);
                             restAddress.text(address);
 
@@ -85,56 +86,65 @@ $(document).ready(function () {
 
                         }
 
-                        //Cycling through current connections, however it is currently including the user from above due to "connectionsRef.push(userObj)"
-                        //May need to create a unique number ID as part of the object prior to push.
-                        database.ref("/connections").on("child_added", function(childSnapshot){
-                            
-                            console.log(childSnapshot.val());
-                            console.log(childSnapshot.val()["name"]);
-                            console.log(childSnapshot.val()["preference"])
 
-                        })
-                    });
+                        con.onDisconnect().remove();
+                    }, "jsonp");
+                });
 
 
 
-
-
-
-
-
-
-
-
-                    //=====================GLOBAL (END)=============================//
-                    //=========================Jimmy===============================//
-
-
-
-
-
-
-                    //=====================Jimmy (END)=============================//
-                    //=========================Eric===============================//
-
-
-
-
-
-
-                    //=====================Eric (END)=============================//
-                    //=========================Lena===============================//
-
-
-
-
-
-
-
-                    //=====================Lena (END)=============================//
-                    con.onDisconnect().remove();
-                }, "jsonp");
             });
+
+
+
         }
+
     });
+
+    
+    $(document).on("click", ".restSelected", function () {
+        //Cycling through current connections, however it is currently including the user from above due to "connectionsRef.push(userObj)"
+        //May need to create a unique number ID as part of the object prior to push.
+        database.ref("/connections").on("child_added", function (childSnapshot) {
+
+            console.log(childSnapshot.val());
+            console.log(childSnapshot.val()["name"]);
+            console.log(childSnapshot.val()["preference"])
+
+        })
+    });
+
+
+    
 });
+
+
+
+
+                //=====================GLOBAL (END)=============================//
+                //=========================Jimmy===============================//
+
+
+
+
+
+
+                //=====================Jimmy (END)=============================//
+                //=========================Eric===============================//
+
+
+
+
+
+
+                //=====================Eric (END)=============================//
+                //=========================Lena===============================//
+
+
+
+
+
+
+
+                //=====================Lena (END)=============================//
+
