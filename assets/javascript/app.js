@@ -18,6 +18,7 @@ $(document).ready(function () {
     var selectedFile;
     var userImgURL = "";
     var storageRef;
+    var userDisplayImg = $("<img>");
 
     //input an event when a file is uploaded.
     $("#file").on("change", function (event) {
@@ -60,6 +61,10 @@ $(document).ready(function () {
             uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
                 console.log('File available at', downloadURL);
                 userImgURL = downloadURL;
+                userDisplayImg.attr("src",downloadURL);
+                userDisplayImg.addClass("userImage")
+                $("#uploadedImg").append(userDisplayImg);
+                
             });
         });
     });
