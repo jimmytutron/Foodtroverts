@@ -81,13 +81,17 @@ $(document).ready(function () {
             $("#submitPref").on("click", function (event) {
                 event.preventDefault();
 
-                $("#userForm").addClass("d-none");
-                $("#restaurant-list").removeClass("d-none");
-
                 var userName = $("#userName").val().trim();
                 var userFoodPref = $("#foodPref").val().trim();
                 var userPrefTime = $("#timePref").val().trim();
                 var userLoc = $("#userLoc").val().trim();
+
+                if(userName !== '' && userFoodPref !== 'Select' && userPrefTime !== 'Select'){
+
+                $("#userForm").addClass("d-none");
+                $("#restaurant-list").removeClass("d-none");
+
+              
 
                 userObj["name"] = userName;
                 userObj["preference"] = userFoodPref;
@@ -142,6 +146,11 @@ $(document).ready(function () {
 
                     }, "jsonp");
                 });
+            } else {
+                
+              // alert("Fill it out");
+            }
+            //
             });
 
 
