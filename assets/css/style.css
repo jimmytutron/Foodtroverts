@@ -1,5 +1,10 @@
 body {
     width: 100%;
+    background: url("../images/background.jpeg") no-repeat bottom right fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover; 
+    background-size: cover;
 }
 
 h1 {
@@ -7,8 +12,9 @@ h1 {
 }
 
 .jumbotron {
-    background-image: url("../images/eating.jpg");
-    background-position: center;
+    background-image: url("../images/buddy.jpeg");
+    background-position: right center;
+    height: 100vh;
 }
 
 a.nav-item.nav-link.active {
@@ -19,13 +25,15 @@ a.nav-item.nav-link.active {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    padding: 30px;
 }
 
 .logo{
     height: 50px;
 }
 
+.footer{
+    color: #fff;
+}
 
 /* footer */
 a.navbar-brand {
