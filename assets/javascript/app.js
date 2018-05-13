@@ -20,6 +20,10 @@ $(document).ready(function () {
     var storageRef;
     var userDisplayImg = $("<img>");
 
+    var selectedRestName = "";
+    var selectedRestAddress = "";
+    var selectedRestImgUrl = "";
+
     //input an event when a file is uploaded.
     $("#file").on("change", function (event) {
         //append a small image of user.
@@ -115,18 +119,22 @@ $(document).ready(function () {
 
                         for (var i = 0; i < 5; i++) {
                             var restDiv = $('<div>');
-                            var restNameTag = $('<h1>');
-                            var restAddress = $('<p>');
-                            var address = results[i]["formatted_address"];
+                            var restNameTag = $('<h4>');
+                            var restAddressTag = $('<p>');
+                            var restAddress = results[i]["formatted_address"];
                             var restName = results[i]["name"];
 
                             restDiv.addClass('restSelected');
                             restDiv.attr('data-id', results[i]['id']);
-                            restNameTag.text(restName);
-                            restAddress.text(address);
+                            restDiv.attr('data-name', restName);
+                            restDiv.attr('data-address', restAddress);
+                            // restDiv.attr('data-url', results[i]['url'])
 
-                            restDiv.append(restName);
-                            restDiv.append(restAddress);
+                            restNameTag.text(restName);
+                            restAddressTag.text(restAddress);
+
+                            restDiv.append(restNameTag);
+                            restDiv.append(restAddressTag);
                             $('#restaurantP').append(restDiv);
 
                         }
@@ -154,6 +162,19 @@ $(document).ready(function () {
                 var userMatched = false;
                 var listOfBuddies = [];
                 var listofBudImgs = [];
+                
+
+                // adding new section for the 'matched' restaurant results to display when matched with your buddy.
+                var restNameMatchTag = $('<h3>');
+                var restAddressMatch = $('<p>');
+                restNameMatchTag.text($(this).attr('data-name'));
+                restAddressMatch.text($(this).attr('data-address'));
+                // console.log($(this).attr('data-name'));
+                $('#restaurant-info').append(restNameMatchTag);
+                $('#restaurant-info').append(restAddressMatch);
+                console.log($(this).attr('data-address'));
+
+                
                 //Cycling through current connections, however it is currently including the user from above due to "connectionsRef.push(userObj)"
                 //May need to create a unique number ID as part of the object prior to push.
                 database.ref("/connections").on("child_added", function (childSnapshot) {
@@ -219,32 +240,3 @@ $(document).ready(function () {
 
 });
 
-
-
-
-//=====================GLOBAL (END)=============================//
-//=========================Jimmy===============================//
-
-
-
-
-
-
-//=====================Jimmy (END)=============================//
-//=========================Eric===============================//
-
-
-
-
-
-
-//=====================Eric (END)=============================//
-//=========================Lena===============================//
-
-
-
-
-
-
-
-//=====================Lena (END)=============================//
