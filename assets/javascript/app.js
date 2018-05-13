@@ -89,7 +89,8 @@ $(document).ready(function() {
 
             $(document).on("click", ".restSelected", function() {
                 //push id into object
-                userObj["rest ID"] = $(".restSelected").attr('data-id');
+                dataID = $(this);
+                userObj["rest ID"] = dataID.attr("data-id")
 
                 console.log(userObj);
                 var con = connectionsRef.push(userObj);
@@ -141,7 +142,7 @@ $(document).ready(function() {
                         header.text("Still searching for a buddy...");
                         buddyDiv.append(header);
 
-                        $("#buddyResults").append(buddyDiv);                        
+                        $("#buddyResults").append(buddyDiv);
                     }
 
                 })
