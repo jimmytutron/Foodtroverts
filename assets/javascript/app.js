@@ -77,10 +77,6 @@ $(document).ready(function () {
             $("#submitPref").on("click", function (event) {
                 event.preventDefault();
 
-                console.log("UserImgURL: " + userImgURL)
-
-
-
                 var userName = $("#userName").val().trim();
                 var userFoodPref = $("#foodPref").val().trim();
                 var userPrefTime = $("#timePref").val().trim();
@@ -97,8 +93,7 @@ $(document).ready(function () {
                 $.get("https://api.ipdata.co/", function (res) {
 
                     if (userLoc === "") {
-                        userLocationInfo = res;
-                        var currentCity = res["city"];
+                        var currentCity = res["postal"];
                         userObj.location = currentCity;
                     }
                     //=====Google Places=======/
@@ -154,8 +149,6 @@ $(document).ready(function () {
                 //Cycling through current connections, however it is currently including the user from above due to "connectionsRef.push(userObj)"
                 //May need to create a unique number ID as part of the object prior to push.
                 database.ref("/connections").on("child_added", function (childSnapshot) {
-
-                    var matchID = "";
 
                     matchRestID = childSnapshot.val()["rest ID"];
                     matchUniqueID = childSnapshot.key;
