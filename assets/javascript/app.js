@@ -77,6 +77,9 @@ $(document).ready(function () {
             $("#submitPref").on("click", function (event) {
                 event.preventDefault();
 
+                $("#userForm").addClass("d-none");
+                $("#restaurant-list").removeClass("d-none");
+
                 var userName = $("#userName").val().trim();
                 var userFoodPref = $("#foodPref").val().trim();
                 var userPrefTime = $("#timePref").val().trim();
@@ -136,7 +139,12 @@ $(document).ready(function () {
 
 
             $(document).on("click", ".restSelected", function () {
+
+                $("#restaurant-list").addClass("d-none");
+                $("#buddy-list").removeClass("d-none");
+
                 //push id into object
+
                 dataID = $(this);
                 userObj["rest ID"] = dataID.attr("data-id")
 
