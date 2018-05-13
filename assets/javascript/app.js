@@ -1,13 +1,13 @@
-$(document).ready(function() {
+$(document).ready(function () {
     //=========================GLOBAL===============================//
     // Initialize Firebase
     var config = {
-        apiKey: "AIzaSyDQhnkQVQxYFIzpHHe3f9j46KYowZpgGRg",
-        authDomain: "foodtroverts-1525972295801.firebaseapp.com",
-        databaseURL: "https://foodtroverts-1525972295801.firebaseio.com",
-        projectId: "foodtroverts-1525972295801",
-        storageBucket: "",
-        messagingSenderId: "945445095089"
+        apiKey: "AIzaSyCOSZbFya-dU4ArdvJH1Ky343FY1Y6lhU8",
+        authDomain: "thedemo-833f6.firebaseapp.com",
+        databaseURL: "https://thedemo-833f6.firebaseio.com",
+        projectId: "thedemo-833f6",
+        storageBucket: "thedemo-833f6.appspot.com",
+        messagingSenderId: "932306555354"
     };
     firebase.initializeApp(config);
 
@@ -15,15 +15,60 @@ $(document).ready(function() {
 
     var connectionsRef = database.ref("/connections");
     var connectedRef = database.ref(".info/connected");
+    var selectedFile;
+    var userImgURL = "";
+
+    //input an event when a file is uploaded.
+    $("#file").on("change", function (event) {
+        //append a small image of user.
+        // setting selectedFile to be the file being uploaded.
+        selectedFile = event.target.files[0];
+    });
+
+    $("#uploadButton").on("click", function uploadFile() {
+        var fileName = selectedFile.name;
+        var storageRef = firebase.storage().ref("images/" + fileName);
+        console.log("what is file name? " + fileName);
+
+        var uploadTask = storageRef.put(selectedFile);
+        // Register three observers:
+        // 1. 'state_changed' observer, called any time the state changes
+        // 2. Error observer, called on failure
+        // 3. Completion observer, called on successful completion
+        uploadTask.on('state_changed', function (snapshot) {
+            // Observe state change events such as progress, pause, and resume
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress + '% done');
+            switch (snapshot.state) {
+                case firebase.storage.TaskState.PAUSED: // or 'paused'
+                    console.log('Upload is paused');
+                    break;
+                case firebase.storage.TaskState.RUNNING: // or 'running'
+                    console.log('Upload is running');
+                    break;
+            }
+        }, function (error) {
+            // Handle unsuccessful uploads
+        }, function () {
+            // Handle successful uploads on complete
+            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+            uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                console.log('File available at', downloadURL);
+                userImgURL = downloadURL;
+            });
+        });
+    });
+
 
 
     //button for city entry
 
 
-    connectedRef.on("value", function(snap) {
+    connectedRef.on("value", function (snap) {
         var userObj = {};
         if (snap.val()) {
-            $("#submitPref").on("click", function(event) {
+            $("#submitPref").on("click", function (event) {
                 event.preventDefault();
 
                 var userName = $("#userName").val().trim();
@@ -35,10 +80,11 @@ $(document).ready(function() {
                 userObj["preference"] = userFoodPref;
                 userObj["preference time"] = userPrefTime;
                 userObj["location"] = userLoc;
+                userObj["imageURL"] = userImgURL;
 
 
                 //=====IPData=======/
-                $.get("https://api.ipdata.co/", function(res) {
+                $.get("https://api.ipdata.co/", function (res) {
 
                     if (userLoc === "") {
                         userLocationInfo = res;
@@ -47,7 +93,7 @@ $(document).ready(function() {
                     }
                     //=====Google Places=======/
 
-                    var authKey = "AIzaSyAZPAsF-Fb-C5lnhtkitRLjplX24zRkqeE";
+                    var authKey = "AIzaSyCOSZbFya-dU4ArdvJH1Ky343FY1Y6lhU8";
                     var city = userObj["location"];
                     var preference = userObj["preference"];
                     var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + preference + " restaurants+in+" + city + "&key=" + authKey;
@@ -55,7 +101,7 @@ $(document).ready(function() {
                     $.ajax({
                         url: queryURL,
                         method: "GET"
-                    }).then(function(response) {
+                    }).then(function (response) {
                         // console.log("Place ID: " + response.results[0].place_id);
                         var results = response.results
 
@@ -80,14 +126,11 @@ $(document).ready(function() {
 
                     }, "jsonp");
                 });
-
-
-
             });
 
 
 
-            $(document).on("click", ".restSelected", function() {
+            $(document).on("click", ".restSelected", function () {
                 //push id into object
                 dataID = $(this);
                 userObj["rest ID"] = dataID.attr("data-id")
@@ -99,7 +142,7 @@ $(document).ready(function() {
                 var listOfBuddies = [];
                 //Cycling through current connections, however it is currently including the user from above due to "connectionsRef.push(userObj)"
                 //May need to create a unique number ID as part of the object prior to push.
-                database.ref("/connections").on("child_added", function(childSnapshot) {
+                database.ref("/connections").on("child_added", function (childSnapshot) {
 
                     var matchID = "";
 
@@ -120,10 +163,20 @@ $(document).ready(function() {
 
                         $("#buddyResults").empty();
                         var buddyDiv = $("<div>");
+                        var imageTag = $("<img>");
                         var header = $("<h3>");
+                        
+                        var imageSrc = childSnapshot.val()["imageURL"];
+
+                        console.log(imageSrc);
+                        imageTag.attr("src", imageSrc);
+                        imageTag.addClass("userImage");
+  
+
                         header.text("We found some buddies!");
                         buddyDiv.append(header);
-
+                        buddyDiv.append(imageTag);
+                        
                         for (var i = 0; i < listOfBuddies.length; i++) {
                             var personName = $("<p>");
                             personName.text(listOfBuddies[i]);
