@@ -31,6 +31,10 @@ a.navbar-brand {
     width: 25%;
 }
 
+.userImage{
+    width: 100px;
+}
+
 #foodPref {
     width: 30%;
 }
