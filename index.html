@@ -77,56 +77,76 @@
                     <!-- User Input: -->
                     <div id="gsInput">
                         <!-- input box here -->
+                        <div class="row">
+                            <div class="col-12">
+                                <h1>Get Started!</h1>
+                            </div>
+                        </div>
                         <form>
-                            <div class="form-group">
-                                <label for="userName">Who Are You?</label>
-                                <input type="name" class="form-control" id="userName" aria-describedby="nameNote" placeholder="Your name here.">
-                                <small id="nameNote" class="form-text text-muted"> Nicknames accepted for privacy purposes.</small>
-                            </div>
-                            <div>
-                                <p>User Image</p>
-                                <div id="uploadedImg">
+                            <div class="form-row justify-content-center">
+                                <div class="form-group col-md-8">
+                                    <label for="userName">What's Your Name?</label>
+                                    <input type="name" class="form-control" id="userName" aria-describedby="nameNote" placeholder="John Doe">
+                                    <small id="nameNote" class="form-text text-muted"> Nicknames accepted for privacy purposes.</small>
                                 </div>
-                                <label class="upload-group">
-                                    Upload File
-                                    <input id="file" class="upload-group" type="file">
-                                    <br>
+                            </div>
+                            <div class="form-row justify-content-center">
+                                <div class="form-group col-md-8" id="uploadedImg">
+                            </div>
+                        </div>
+                            <div class="form-row justify-content-center my-3">
+                                <div class="custom-file col-md-8">
+                                    <input type="file" class="custom-file-input upload-group" id="file">
+                                    <label class="custom-file-label" for="validatedCustomFile">Upload an image!</label>
+                                    <small id="imageNote" class="form-text text-muted">Accepted file formats: .jpg, .jpeg, .gif, .png</small>
+                                </div>
+                            </div>
+                            <div class="form-row justify-content-end mt-4">
+                                <div class="form-group col-md-3">
                                     <button id="submitImage" class="btn btn-light">Upload</button>
-                                </label>
+                                </div>
                             </div>
+
                             <!-- drop down for food selections -->
-                            <div class="dropdown">
-                                <p>What are you hungry for?</p>
-                                <select id="foodPref" class="custom-select">
-                                    <option selected>Select</option>
-                                    <option value="italian">Italian</option>
-                                    <option value="french">French</option>
-                                    <option value="german">German</option>
-                                    <option value="indian">Indian</option>
-                                    <option value="chinese">Chinese</option>
-                                    <option value="japanese">Japanese</option>
-                                    <option value="thai">Thai</option>
-                                    <option value="american">American</option>
-                                    <option value="mexican">Mexican</option>
-                                </select>
+                            <div class="form-row justify-content-center">
+                                <div class="form-group col-md-4 col-sm-12">
+                                    <p>What are you hungry for?</p>
+                                    <select id="foodPref" class="custom-select">
+                                        <option selected>Select</option>
+                                        <option value="italian">Italian</option>
+                                        <option value="french">French</option>
+                                        <option value="german">German</option>
+                                        <option value="indian">Indian</option>
+                                        <option value="chinese">Chinese</option>
+                                        <option value="japanese">Japanese</option>
+                                        <option value="thai">Thai</option>
+                                        <option value="american">American</option>
+                                        <option value="mexican">Mexican</option>
+                                    </select>
+                                </div>
+                                <br>
+                                <!-- Dropdown 2 for meal - 'timePref' -->
+                                <div class="form-group col-md-4 col-sm-12">
+                                    <p>When do you wanna eat?</p>
+                                    <select id="timePref" class="custom-select">
+                                        <option selected>Select</option>
+                                        <option value="breakfast">- Breakfast (7am - 11am)</option>
+                                        <option value="lunch">- Lunch (11am - 5pm)</option>
+                                        <option value="dinner">- Dinner (5pm - 9pm)</option>
+                                    </select>
+                                </div>
                             </div>
-                            <br>
-                            <!-- Dropdown 2 for meal - 'timePref' -->
-                            <div class="dropdown2">
-                                <p>What is your preffered meal time?</p>
-                                <select id="timePref" class="custom-select">
-                                    <option selected>Select</option>
-                                    <option value="breakfast">- Breakfast (7am - 11am)</option>
-                                    <option value="lunch">- Lunch (11am - 5pm)</option>
-                                    <option value="dinner">- Dinner (5pm - 9pm)</option>
-                                </select>
+                            <div class="form-row justify-content-center">
+                                <div class="form-group col-md-8">
+                                    <label for="currentLocation">Location</label>
+                                    <input type="location" class="form-control" id="userLoc" placeholder="Enter a zip code or a city name">
+                                </div>
                             </div>
-                            <br>
-                            <div class="form-group">
-                                <label for="currentLocation">What is your current location?</label>
-                                <input type="location" class="form-control" id="userLoc" placeholder="Current Location">
+                            <div class="form-row justify-content-end">
+                                <div class="form-group col-md-3">
+                                    <button id="submitPref" class="btn btn-light">Lets Eat!</button>
+                                </div>
                             </div>
-                            <button id="submitPref" class="btn btn-light">Lets Eat!</button>
                         </form>
                     </div>
                 </div>
@@ -140,7 +160,7 @@
                 </div>
             </div> -->
             <!-- Restaurant Section, page 4 -->
-            <div class="card my-2">
+            <div class="card my-2 d-none" id="restuarant-list">
                 <div class="card-body">
                     <div id="restSection">
                         <div id="restaurantP">
@@ -149,7 +169,7 @@
                 </div>
             </div>
             <!-- Buddy Search results, page 5 -->
-            <div class="card">
+            <div class="card d-none" id="buddy-list">
                 <div class="card-body" id="buddyResults">
                 </div>
             </div>
