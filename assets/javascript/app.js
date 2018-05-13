@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
     //=========================GLOBAL===============================//
     // Initialize Firebase
     var config = {
@@ -20,10 +20,10 @@ $(document).ready(function () {
     //button for city entry
 
 
-    connectedRef.on("value", function (snap) {
+    connectedRef.on("value", function(snap) {
         var userObj = {};
         if (snap.val()) {
-            $("#submitPref").on("click", function (event) {
+            $("#submitPref").on("click", function(event) {
                 event.preventDefault();
 
                 var userName = $("#userName").val().trim();
@@ -38,7 +38,7 @@ $(document).ready(function () {
 
 
                 //=====IPData=======/
-                $.get("https://api.ipdata.co/", function (res) {
+                $.get("https://api.ipdata.co/", function(res) {
 
                     if (userLoc === "") {
                         userLocationInfo = res;
@@ -55,7 +55,7 @@ $(document).ready(function () {
                     $.ajax({
                         url: queryURL,
                         method: "GET"
-                    }).then(function (response) {
+                    }).then(function(response) {
                         // console.log("Place ID: " + response.results[0].place_id);
                         var results = response.results
 
@@ -87,7 +87,7 @@ $(document).ready(function () {
 
 
 
-            $(document).on("click", ".restSelected", function () {
+            $(document).on("click", ".restSelected", function() {
                 //push id into object
                 userObj["rest ID"] = $(".restSelected").attr('data-id');
 
@@ -95,9 +95,10 @@ $(document).ready(function () {
                 var con = connectionsRef.push(userObj);
                 var newID = con.getKey();
                 var userMatched = false;
+                var listOfBuddies = [];
                 //Cycling through current connections, however it is currently including the user from above due to "connectionsRef.push(userObj)"
                 //May need to create a unique number ID as part of the object prior to push.
-                database.ref("/connections").on("child_added", function (childSnapshot) {
+                database.ref("/connections").on("child_added", function(childSnapshot) {
 
                     var matchID = "";
 
@@ -108,11 +109,39 @@ $(document).ready(function () {
                     // console.log(newID);
                     // console.log(matchUniqueID);
 
-                    if ((matchRestID === userObj["rest ID"]) && (newID !== matchUniqueID) && (userMatched === false)) {
+                    if ((matchRestID === userObj["rest ID"]) && (newID !== matchUniqueID)) {
                         console.log("WOOOHOOO")
+                        var headerText = "";
                         userMatched = true;
-                    } else if (userMatched === false){
+
+                        listOfBuddies.push(childSnapshot.val()["name"]);
+                        console.log(listOfBuddies);
+
+                        $("#buddyResults").empty();
+                        var buddyDiv = $("<div>");
+                        var header = $("<h3>");
+                        header.text("We found some buddies!");
+                        buddyDiv.append(header);
+
+                        for (var i = 0; i < listOfBuddies.length; i++) {
+                            var personName = $("<p>");
+                            personName.text(listOfBuddies[i]);
+
+                            buddyDiv.append(personName);
+                            $("#buddyResults").append(buddyDiv);
+                        }
+                        console.log(headerText);
+
+                    } else if (userMatched === false) {
                         console.log("sorry no match yet :(")
+                        $("#buddyResults").empty();
+
+                        var buddyDiv = $("<div>");
+                        var header = $("<h3>");
+                        header.text("Still searching for a buddy...");
+                        buddyDiv.append(header);
+
+                        $("#buddyResults").append(buddyDiv);                        
                     }
 
                 })
