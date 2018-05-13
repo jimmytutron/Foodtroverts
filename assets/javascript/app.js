@@ -145,6 +145,7 @@ $(document).ready(function () {
                 var newID = con.getKey();
                 var userMatched = false;
                 var listOfBuddies = [];
+                var listofBudImgs = [];
                 //Cycling through current connections, however it is currently including the user from above due to "connectionsRef.push(userObj)"
                 //May need to create a unique number ID as part of the object prior to push.
                 database.ref("/connections").on("child_added", function (childSnapshot) {
@@ -165,27 +166,26 @@ $(document).ready(function () {
 
                         listOfBuddies.push(childSnapshot.val()["name"]);
                         console.log(listOfBuddies);
+                        listofBudImgs.push(childSnapshot.val()["imageURL"])
 
                         $("#buddyResults").empty();
                         var buddyDiv = $("<div>");
-                        var imageTag = $("<img>");
                         var header = $("<h3>");
-
-                        var imageSrc = childSnapshot.val()["imageURL"];
-
-                        console.log(imageSrc);
-                        imageTag.attr("src", imageSrc);
-                        imageTag.addClass("userImage");
-
 
                         header.text("We found some buddies!");
                         buddyDiv.append(header);
-                        buddyDiv.append(imageTag);
+
 
                         for (var i = 0; i < listOfBuddies.length; i++) {
+                            var imageTag = $("<img>");
+                            var imageSrc = listofBudImgs[i];
                             var personName = $("<p>");
+
+                            imageTag.attr("src", imageSrc);
+                            imageTag.addClass("userImage");
                             personName.text(listOfBuddies[i]);
 
+                            buddyDiv.append(imageTag);
                             buddyDiv.append(personName);
                             $("#buddyResults").append(buddyDiv);
                         }
