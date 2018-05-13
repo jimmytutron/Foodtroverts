@@ -28,15 +28,16 @@
     <!-- Sticky NavBar -->
     <div id="nav-bar">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#"></a>
+             <a class="navbar-brand" href="#First">
+                        <img style="max-height: 30px;" src="assets/images/logo_small.svg">
+                        <!--img src="" alt="logo"-->
+                    </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
                 aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="#"> Home
-                        <span class="sr-only">(current)</span>
                     </a>
                     <a class="nav-item nav-link" href="#"> About </a>
                     <a class="nav-item nav-link" href="#"> Log-In </a>
@@ -73,7 +74,8 @@
                                 <p>User Image</p>
                                 <label class="upload-group">
                                     Upload File
-                                    <input id="file" class="upload-group" type="file">
+                                    <input id="file" class="upload-group" type="file"><br>
+                                     <button id="submitImage" class="btn btn-light">Upload</button>
                                 </label>
                             </div>
                             <!-- drop down for food selections -->
@@ -142,7 +144,7 @@
     </div>
     <!-- 2 Divs close container, and Jumbotron  -->
     <!-- Sticky Bottom -->
-    <nav class="navbar fixed-bottom navbar-light bg-light">
+    <nav class="navbar fixed-bottom navbar-light bg-light justify-content-center">
         <a class="navbar-brand" href="#">© Copyright FoodTroverts</a>
     </nav>
     <!-- JQuery -->

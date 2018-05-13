@@ -6,8 +6,8 @@ a.nav-item.nav-link.active {
 
 .logo-image{
     text-align: center;
-    margin-left: 60px;
-    margin-right: 160px;
+    margin-left: auto;
+    margin-right: auto;
     padding: 30px;
 }
 
