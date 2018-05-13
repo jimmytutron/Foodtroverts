@@ -25,51 +25,56 @@ $(document).ready(function () {
         selectedFile = event.target.files[0];
     });
 
-    $("#uploadButton").on("click", function uploadFile() {
-        var fileName = selectedFile.name;
-        var storageRef = firebase.storage().ref("images/" + fileName);
-        console.log("what is file name? " + fileName);
-
-        var uploadTask = storageRef.put(selectedFile);
-        // Register three observers:
-        // 1. 'state_changed' observer, called any time the state changes
-        // 2. Error observer, called on failure
-        // 3. Completion observer, called on successful completion
-        uploadTask.on('state_changed', function (snapshot) {
-            // Observe state change events such as progress, pause, and resume
-            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log('Upload is ' + progress + '% done');
-            switch (snapshot.state) {
-                case firebase.storage.TaskState.PAUSED: // or 'paused'
-                    console.log('Upload is paused');
-                    break;
-                case firebase.storage.TaskState.RUNNING: // or 'running'
-                    console.log('Upload is running');
-                    break;
-            }
-        }, function (error) {
-            // Handle unsuccessful uploads
-        }, function () {
-            // Handle successful uploads on complete
-            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-            uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-                console.log('File available at', downloadURL);
-                userImgURL = downloadURL;
-            });
-        });
-    });
-
-
 
     //button for city entry
 
+    var storageRef;
 
     connectedRef.on("value", function (snap) {
         var userObj = {};
         if (snap.val()) {
             $("#submitPref").on("click", function (event) {
                 event.preventDefault();
+
+                var fileName = selectedFile.name;
+                storageRef = firebase.storage().ref("images/" + fileName);
+                console.log("what is file name? " + fileName);
+
+                var uploadTask = storageRef.put(selectedFile);
+                // Register three observers:
+                // 1. 'state_changed' observer, called any time the state changes
+                // 2. Error observer, called on failure
+                // 3. Completion observer, called on successful completion
+                uploadTask.on('state_changed', function (snapshot) {
+                    // Observe state change events such as progress, pause, and resume
+                    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+                    switch (snapshot.state) {
+                        case firebase.storage.TaskState.PAUSED: // or 'paused'
+                            console.log('Upload is paused');
+                            break;
+                        case firebase.storage.TaskState.RUNNING: // or 'running'
+                            console.log('Upload is running');
+                            break;
+                    }
+                }, function (error) {
+                    // Handle unsuccessful uploads
+                }, function () {
+                    // Handle successful uploads on complete
+                    // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+                    uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                        console.log('File available at', downloadURL);
+                        userImgURL = downloadURL;
+                        // storageRef.onDisconnect().delete();
+                    });
+                });
+
+
+
+
+
+
 
                 var userName = $("#userName").val().trim();
                 var userFoodPref = $("#foodPref").val().trim();
@@ -165,18 +170,18 @@ $(document).ready(function () {
                         var buddyDiv = $("<div>");
                         var imageTag = $("<img>");
                         var header = $("<h3>");
-                        
+
                         var imageSrc = childSnapshot.val()["imageURL"];
 
                         console.log(imageSrc);
                         imageTag.attr("src", imageSrc);
                         imageTag.addClass("userImage");
-  
+
 
                         header.text("We found some buddies!");
                         buddyDiv.append(header);
                         buddyDiv.append(imageTag);
-                        
+
                         for (var i = 0; i < listOfBuddies.length; i++) {
                             var personName = $("<p>");
                             personName.text(listOfBuddies[i]);
@@ -199,10 +204,11 @@ $(document).ready(function () {
                     }
 
                 })
-                con.onDisconnect().remove();
+                con.onDisconnect().remove().then(function () {
+                    storageRef.delete();
+                });
             });
-        }
-
+}
     });
 });
 
