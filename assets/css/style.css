@@ -2,6 +2,10 @@ body {
     width: 100%;
 }
 
+h1 {
+    text-align: center;
+}
+
 .jumbotron {
     background-image: url("../images/eating.jpg");
     background-position: center;
@@ -41,26 +45,15 @@ a.navbar-brand {
 }
 
 
-
-#userName {
-    width: 25%;
-}
-
 .userImage{
-    width: 100px;
+    max-width: 300px;
 }
 
-#foodPref {
-    width: 30%;
+#uploadedImg{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
-
-#timePref {
-    width: 30%;
-}
-#userLoc {
-    width: 35%;
-}
-
 #searchingRest{
     text-align: center;
 }
