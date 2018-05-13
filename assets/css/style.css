@@ -1,4 +1,6 @@
-
+body {
+    width: 100%;
+}
 
 a.nav-item.nav-link.active {
     text-align: center;
@@ -9,6 +11,10 @@ a.nav-item.nav-link.active {
     margin-left: auto;
     margin-right: auto;
     padding: 30px;
+}
+
+.logo{
+    height: 50px;
 }
 
 
@@ -25,6 +31,10 @@ a.navbar-brand {
     padding-top: 40px;
     font-size: 90px;
     text-align: center;
+}
+
+.main-logo{
+    max-width: 80%;
 }
 
 #userName {
