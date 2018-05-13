@@ -17,6 +17,7 @@ $(document).ready(function () {
     var connectedRef = database.ref(".info/connected");
     var selectedFile;
     var userImgURL = "";
+    var storageRef;
 
     //input an event when a file is uploaded.
     $("#file").on("change", function (event) {
@@ -27,8 +28,43 @@ $(document).ready(function () {
 
 
     //button for city entry
+    $("#submitImage").on("click", function () {
+        event.preventDefault();
+        var fileName = selectedFile.name;
+        storageRef = firebase.storage().ref("images/" + fileName);
+        console.log("what is file name? " + fileName);
 
-    var storageRef;
+        var uploadTask = storageRef.put(selectedFile);
+        // Register three observers:
+        // 1. 'state_changed' observer, called any time the state changes
+        // 2. Error observer, called on failure
+        // 3. Completion observer, called on successful completion
+        uploadTask.on('state_changed', function (snapshot) {
+            // Observe state change events such as progress, pause, and resume
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress + '% done');
+            switch (snapshot.state) {
+                case firebase.storage.TaskState.PAUSED: // or 'paused'
+                    console.log('Upload is paused');
+                    break;
+                case firebase.storage.TaskState.RUNNING: // or 'running'
+                    console.log('Upload is running');
+                    break;
+            }
+        }, function (error) {
+            // Handle unsuccessful uploads
+        }, function () {
+            // Handle successful uploads on complete
+            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+            uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                console.log('File available at', downloadURL);
+                userImgURL = downloadURL;
+            });
+        });
+    });
+
+
 
     connectedRef.on("value", function (snap) {
         var userObj = {};
@@ -36,43 +72,7 @@ $(document).ready(function () {
             $("#submitPref").on("click", function (event) {
                 event.preventDefault();
 
-                var fileName = selectedFile.name;
-                storageRef = firebase.storage().ref("images/" + fileName);
-                console.log("what is file name? " + fileName);
-
-                var uploadTask = storageRef.put(selectedFile);
-                // Register three observers:
-                // 1. 'state_changed' observer, called any time the state changes
-                // 2. Error observer, called on failure
-                // 3. Completion observer, called on successful completion
-                uploadTask.on('state_changed', function (snapshot) {
-                    // Observe state change events such as progress, pause, and resume
-                    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    console.log('Upload is ' + progress + '% done');
-                    switch (snapshot.state) {
-                        case firebase.storage.TaskState.PAUSED: // or 'paused'
-                            console.log('Upload is paused');
-                            break;
-                        case firebase.storage.TaskState.RUNNING: // or 'running'
-                            console.log('Upload is running');
-                            break;
-                    }
-                }, function (error) {
-                    // Handle unsuccessful uploads
-                }, function () {
-                    // Handle successful uploads on complete
-                    // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-                    uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-                        console.log('File available at', downloadURL);
-                        userImgURL = downloadURL;
-                        // storageRef.onDisconnect().delete();
-                    });
-                });
-
-
-
-
+                console.log("UserImgURL: " + userImgURL)
 
 
 
@@ -86,7 +86,7 @@ $(document).ready(function () {
                 userObj["preference time"] = userPrefTime;
                 userObj["location"] = userLoc;
                 userObj["imageURL"] = userImgURL;
-
+                console.log(userObj);
 
                 //=====IPData=======/
                 $.get("https://api.ipdata.co/", function (res) {
@@ -205,11 +205,12 @@ $(document).ready(function () {
 
                 })
                 con.onDisconnect().remove().then(function () {
-                    storageRef.delete();
+                    // storageRef.delete();
                 });
             });
-}
+        }
     });
+
 });
 
 
