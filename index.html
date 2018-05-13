@@ -5,17 +5,13 @@
     <meta charset="UTF-8">
     <title>FoodTroverts</title>
     <!-- Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <!-- Css BootStrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <!-- Firebase Reference -->
     <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
     <!-- Moment.js Reference -->
@@ -28,12 +24,11 @@
     <!-- Sticky NavBar -->
     <div id="nav-bar">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-             <a class="navbar-brand" href="#First">
+            <a class="navbar-brand" href="#First">
                         <img class="logo" src="assets/images/logo.svg">
                         <!--img src="" alt="logo"-->
                     </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-                aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -58,8 +53,19 @@
                 </p>
             </div>
             <!-- End of "page 1" -->
+            <div class="card my-4">
+            <div class="card-body row justify-content-center">
+                    <div class="col-lg-6">
+                        <img src="https://source.unsplash.com/900x900/?food" class="img-fluid">
+                    </div>
+                    <div class="col-lg-6">
+                        <h1>About Foodtroverts</h1>
+                        <p>Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic. Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini. Turnip greens yarrow ricebean rutabaga endive cauliflower sea lettuce kohlrabi amaranth water spinach avocado daikon napa cabbage asparagus winter purslane kale. Celery potato scallion desert raisin horseradish spinach carrot soko. Lotus root water spinach fennel kombu maize bamboo shoot green bean swiss chard seakale pumpkin onion chickpea gram corn pea. Brussels sprout coriander water chestnut gourd swiss chard wakame kohlrabi beetroot carrot watercress. Corn amaranth salsify bunya nuts nori azuki bean chickweed potato bell pepper artichoke.</p>
+                    </div>
+            </div>
+        </div>
             <!-- Page 2 -->
-            <div class="card">
+            <div class="card my-2">
                 <div class="card-body">
                     <!-- User Input: -->
                     <div id="gsInput">
@@ -74,8 +80,9 @@
                                 <p>User Image</p>
                                 <label class="upload-group">
                                     Upload File
-                                    <input id="file" class="upload-group" type="file"><br>
-                                     <button id="submitImage" class="btn btn-light">Upload</button>
+                                    <input id="file" class="upload-group" type="file">
+                                    <br>
+                                    <button id="submitImage" class="btn btn-light">Upload</button>
                                 </label>
                             </div>
                             <!-- drop down for food selections -->
@@ -124,7 +131,7 @@
                 </div>
             </div> -->
             <!-- Restaurant Section, page 4 -->
-            <div class="card">
+            <div class="card my-2">
                 <div class="card-body">
                     <div id="restSection">
                         <div id="restaurantP">
@@ -148,8 +155,7 @@
         <a class="navbar-brand" href="#">© Copyright FoodTroverts</a>
     </nav>
     <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <!-- JavaScript -->
     <script src="assets/javascript/app.js"></script>
 </body>

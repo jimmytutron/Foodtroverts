@@ -2,6 +2,11 @@ body {
     width: 100%;
 }
 
+.jumbotron {
+    background-image: url("../images/eating.jpg");
+    background-position: center;
+}
+
 a.nav-item.nav-link.active {
     text-align: center;
 }
@@ -18,8 +23,6 @@ a.nav-item.nav-link.active {
 }
 
 
-
-
 /* footer */
 a.navbar-brand {
     text-align: center;
@@ -34,8 +37,10 @@ a.navbar-brand {
 }
 
 .main-logo{
-    max-width: 80%;
+    max-width: 65%;
 }
+
+
 
 #userName {
     width: 25%;
