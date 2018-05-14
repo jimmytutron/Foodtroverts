@@ -20,14 +20,14 @@ $(document).ready(function () {
     var storageRef;
     var userDisplayImg = $("<img>");
 
-    var foodPrefArr = ["American","Chinese","Filipino","French","German","Indian","Italian","Japanese","Korean","Mexican","Norwegian","Portuguese","Spanish","Thai", "Vietnamese"];
+    var foodPrefArr = ["American", "Chinese", "Filipino", "French", "German", "Indian", "Italian", "Japanese", "Korean", "Mexican", "Norwegian", "Portuguese", "Spanish", "Thai", "Vietnamese"];
 
     var selectedRestName = "";
     var selectedRestAddress = "";
     var selectedRestImgUrl = "";
 
 
-    for(var i = 0; i < foodPrefArr.length; i++){
+    for (var i = 0; i < foodPrefArr.length; i++) {
         var foodOption = $("<option>");
         foodOption.attr("value", foodPrefArr[i]);
         foodOption.text(foodPrefArr[i]);
@@ -78,10 +78,10 @@ $(document).ready(function () {
             uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
                 console.log('File available at', downloadURL);
                 userImgURL = downloadURL;
-                userDisplayImg.attr("src",downloadURL);
+                userDisplayImg.attr("src", downloadURL);
                 userDisplayImg.addClass("userImage")
                 $("#uploadedImg").html(userDisplayImg);
-                
+
             });
         });
     });
@@ -99,83 +99,101 @@ $(document).ready(function () {
                 var userPrefTime = $("#timePref").val().trim();
                 var userLoc = $("#userLoc").val().trim();
                 console.log("ENTERED SUBMIT")
-                if(userName !== '' && userFoodPref !== 'Select' && userPrefTime !== 'Select'){
+                if (userName !== '' && userFoodPref !== 'Select' && userPrefTime !== 'Select') {
                     console.log("ENTERED IF")
-                $("#userForm").addClass("d-none");
-                $("#restaurant-list").removeClass("d-none");
-                $("#restaurantP").append("<img class='animated infinite rotateIn rotateOut loading' src='assets/images/logo_small.svg'>");
+                    $("#userForm").addClass("d-none");
+                    $("#restaurant-list").removeClass("d-none");
+                    $("#restaurantP").append("<img class='animated infinite rotateIn rotateOut loading' src='assets/images/logo_small.svg'>");
 
-              
 
-                userObj["name"] = userName;
-                userObj["preference"] = userFoodPref;
-                userObj["preference time"] = userPrefTime;
-                userObj["location"] = userLoc;
-                userObj["imageURL"] = userImgURL;
-                console.log(userObj);
 
-                //=====IPData=======/
-                $.get("https://api.ipdata.co/", function (res) {
+                    userObj["name"] = userName;
+                    userObj["preference"] = userFoodPref;
+                    userObj["preference time"] = userPrefTime;
+                    userObj["location"] = userLoc;
+                    userObj["imageURL"] = userImgURL;
+                    console.log(userObj);
 
-                    if (userLoc === "") {
-                        var currentCity = res["postal"];
-                        userObj.location = currentCity;
-                    }
-                    //=====Google Places=======/
+                    //=====IPData=======/
+                    $.get("https://api.ipdata.co/", function (res) {
 
-                    var authKey = "AIzaSyCOSZbFya-dU4ArdvJH1Ky343FY1Y6lhU8";
-                    var city = userObj["location"];
-                    var preference = userObj["preference"];
-                    var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + preference + " restaurants+in+" + city + "&key=" + authKey;
-
-                    $.ajax({
-                        url: queryURL,
-                        method: "GET"
-                    }).then(function (response) {
-                        // console.log("Place ID: " + response.results[0].place_id);
-                        var results = response.results
-
-                        for (var i = 0; i < 5; i++) {
-                            var restDiv = $('<div>');
-                            var restNameTag = $('<h4>');
-                            var restAddressTag = $('<p>');
-                            var restAddress = results[i]["formatted_address"];
-                            var restName = results[i]["name"];
-
-                            restDiv.addClass('restSelected');
-                            restDiv.attr('data-id', results[i]['id']);
-                            restDiv.attr('data-name', restName);
-                            restDiv.attr('data-address', restAddress);
-                            // restDiv.attr('data-url', results[i]['url'])
-
-                            restNameTag.text(restName);
-                            restAddressTag.text(restAddress);
-
-                            restDiv.append(restNameTag);
-                            restDiv.append(restAddressTag);
-                            $("#restaurantP img:last-child").remove();
-                            $('#restaurantP').append(restDiv);
-
+                        if (userLoc === "") {
+                            var currentCity = res["postal"];
+                            userObj.location = currentCity;
                         }
+                        //=====Google Places=======/
 
+                        var authKey = "AIzaSyCOSZbFya-dU4ArdvJH1Ky343FY1Y6lhU8";
+                        var city = userObj["location"];
+                        var preference = userObj["preference"];
+                        var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + preference + " restaurants+in+" + city + "&key=" + authKey;
 
-                    }, "jsonp");
-                });
-            } else {
-                console.log("ENTERED ELSE")
-                var msgErrorTag = $("<h4>");
-                var msgError = "Missing an input please check."
-                msgErrorTag.text(msgError);
+                        $.ajax({
+                            url: queryURL,
+                            method: "GET"
+                        }).then(function (response) {
+                            // console.log("Place ID: " + response.results[0].place_id);
+                            var results = response.results
+                            console.log(results);
+                            $("#restaurantP img:last-child").remove();
+                            for (var i = 0; i < 5; i++) {
+                                var restDiv = $('<div>');
+                                var restDivRow = $('<div>');
+                                var restDivSec1 = $('<div>')
+                                var restDivSec2 = $('<div>')
+                                var restNameTag = $('<h4>');
+                                var restAddressTag = $('<p>');
+                                var restAddress = results[i]["formatted_address"];
+                                var restName = results[i]["name"];
+                                var restImgTag = $('<img>');
+                                var restImgPhotoRef = results[i]["photos"][0]["photo_reference"];
 
-                msgErrorTag.attr("id","errorText")
-                msgErrorTag.addClass("font-weight-bold text-danger text-right my-auto");
+                                var restImgURL = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference=" + restImgPhotoRef + "&key=" + authKey;
 
-                $("#submitMessage").html(msgErrorTag);
-                // $("#warningModal").modal('toggle');
-                // $("#warningModal").modal('show');
-              // alert("Fill it out");
-            }
-            //
+                                restDiv.addClass('restSelected card card-body');
+                                restDiv.attr('data-id', results[i]['id']);
+                                restDiv.attr('data-name', restName);
+                                restDiv.attr('data-address', restAddress);
+                                // restDiv.attr('data-url', results[i]['url'])
+
+                                restDivRow.addClass('row');
+
+                                restDivSec1.addClass('col-md-3')
+                                restImgTag.addClass('img-fluid');
+                                restImgTag.attr("src", restImgURL);
+                                restDivSec1.append(restImgTag);
+
+                                restDivSec2.addClass('col-md-9')
+                                restNameTag.text(restName);
+                                restAddressTag.text(restAddress);
+                                restDivSec2.append(restNameTag);
+                                restDivSec2.append(restAddressTag);
+
+                                restDivRow.append(restDivSec1);
+                                restDivRow.append(restDivSec2);
+                                restDiv.append(restDivRow);
+                                $('#restaurantP').append(restDiv);
+
+                            }
+                           
+
+                        }, "jsonp");
+                    });
+                } else {
+                    console.log("ENTERED ELSE")
+                    var msgErrorTag = $("<h4>");
+                    var msgError = "Missing an input please check."
+                    msgErrorTag.text(msgError);
+
+                    msgErrorTag.attr("id", "errorText")
+                    msgErrorTag.addClass("font-weight-bold text-danger text-right my-auto");
+
+                    $("#submitMessage").html(msgErrorTag);
+                    // $("#warningModal").modal('toggle');
+                    // $("#warningModal").modal('show');
+                    // alert("Fill it out");
+                }
+                //
             });
 
 
@@ -196,7 +214,7 @@ $(document).ready(function () {
                 var userMatched = false;
                 var listOfBuddies = [];
                 var listofBudImgs = [];
-                
+
 
                 // adding new section for the 'matched' restaurant results to display when matched with your buddy.
                 var restNameMatchTag = $('<h3>');
@@ -208,7 +226,7 @@ $(document).ready(function () {
                 $('#restaurant-info').append(restAddressMatch);
                 console.log($(this).attr('data-address'));
 
-                
+
                 //Cycling through current connections, however it is currently including the user from above due to "connectionsRef.push(userObj)"
                 //May need to create a unique number ID as part of the object prior to push.
                 database.ref("/connections").on("child_added", function (childSnapshot) {
