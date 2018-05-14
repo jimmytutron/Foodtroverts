@@ -20,7 +20,7 @@ $(document).ready(function () {
     var storageRef;
     var userDisplayImg = $("<img>");
 
-    var foodPrefArr = ["American","Chinese","Filipino","French","German","Indian","Italian","Japanese","Korean","Mexican","Norwegian","Portuguese","Spanish","Thai"];
+    var foodPrefArr = ["American","Chinese","Filipino","French","German","Indian","Italian","Japanese","Korean","Mexican","Norwegian","Portuguese","Spanish","Thai", "Vietnamese"];
 
     var selectedRestName = "";
     var selectedRestAddress = "";
