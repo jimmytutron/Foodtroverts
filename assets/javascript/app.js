@@ -85,9 +85,9 @@ $(document).ready(function () {
                 var userFoodPref = $("#foodPref").val().trim();
                 var userPrefTime = $("#timePref").val().trim();
                 var userLoc = $("#userLoc").val().trim();
-
+                console.log("ENTERED SUBMIT")
                 if(userName !== '' && userFoodPref !== 'Select' && userPrefTime !== 'Select'){
-
+                    console.log("ENTERED IF")
                 $("#userForm").addClass("d-none");
                 $("#restaurant-list").removeClass("d-none");
 
@@ -147,7 +147,17 @@ $(document).ready(function () {
                     }, "jsonp");
                 });
             } else {
-                
+                console.log("ENTERED ELSE")
+                var msgErrorTag = $("<h4>");
+                var msgError = "Missing an input please check."
+                msgErrorTag.text(msgError);
+
+                msgErrorTag.attr("id","errorText")
+                msgErrorTag.addClass("font-weight-bold text-danger text-right my-auto");
+
+                $("#submitMessage").append(msgErrorTag);
+                // $("#warningModal").modal('toggle');
+                // $("#warningModal").modal('show');
               // alert("Fill it out");
             }
             //
