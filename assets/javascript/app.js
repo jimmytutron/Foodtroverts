@@ -103,7 +103,7 @@ $(document).ready(function () {
                     console.log("ENTERED IF")
                 $("#userForm").addClass("d-none");
                 $("#restaurant-list").removeClass("d-none");
-                $("#restaurantP").append("<img class='animated infinite rotateIn rotateOut loading' src='assets/images/logo_small.svg'>");
+                $("#restaurantP").append("<img class='animated infinite rotateIn rotateOut loadingRest' src='assets/images/logo_small.svg'>");
 
               
 
