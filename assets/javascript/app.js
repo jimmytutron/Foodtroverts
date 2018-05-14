@@ -40,6 +40,7 @@ $(document).ready(function () {
         console.log("what is file name? " + fileName);
 
         var uploadTask = storageRef.put(selectedFile);
+        $("#uploadedImg").html("<img class='animated infinite rotateIn rotateOut loading' src='assets/images/logo_small.svg'>");
         // Register three observers:
         // 1. 'state_changed' observer, called any time the state changes
         // 2. Error observer, called on failure
@@ -67,7 +68,7 @@ $(document).ready(function () {
                 userImgURL = downloadURL;
                 userDisplayImg.attr("src",downloadURL);
                 userDisplayImg.addClass("userImage")
-                $("#uploadedImg").append(userDisplayImg);
+                $("#uploadedImg").html(userDisplayImg);
                 
             });
         });
@@ -90,6 +91,7 @@ $(document).ready(function () {
                     console.log("ENTERED IF")
                 $("#userForm").addClass("d-none");
                 $("#restaurant-list").removeClass("d-none");
+                $("#restaurantP").append("<img class='animated infinite rotateIn rotateOut loading' src='assets/images/logo_small.svg'>");
 
               
 
@@ -139,6 +141,7 @@ $(document).ready(function () {
 
                             restDiv.append(restNameTag);
                             restDiv.append(restAddressTag);
+                            $("#restaurantP img:last-child").remove();
                             $('#restaurantP').append(restDiv);
 
                         }
@@ -218,7 +221,7 @@ $(document).ready(function () {
                         var buddyDiv = $("<div>");
                         var header = $("<h3>");
 
-                        header.text("We found some buddies!");
+                        header.text("We found some fellow Foodtroverts!");
                         buddyDiv.append(header);
 
 
@@ -246,7 +249,7 @@ $(document).ready(function () {
                         var loadingImg = $("<img>");
                         loadingImg.attr("src", "assets/images/logo_small.svg");
                         loadingImg.addClass('animated infinite rotateIn rotateOut loading');
-                        header.text("Still searching for a buddy...");
+                        header.text("Searching for fellow Foodtroverts...");
                         buddyDiv.append(loadingImg);
                         buddyDiv.append(header);
 
