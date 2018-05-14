@@ -59,9 +59,14 @@ a.nav-item.nav-link.active {
 }
 
 .logo{
-    height: 50px;
+    height: 40px;
 }
+.foodtronav{
+    background-color: #fff;
+    opacity: 0.9;
+    background-blend-mode: multiply;
 
+}
 .footer{
     color: #fff;
 }
