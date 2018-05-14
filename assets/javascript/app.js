@@ -101,11 +101,10 @@ $(document).ready(function () {
                 console.log("ENTERED SUBMIT")
                 if (userName !== '' && userFoodPref !== 'Select' && userPrefTime !== 'Select') {
                     console.log("ENTERED IF")
-                    $("#userForm").addClass("d-none");
-                    $("#restaurant-list").removeClass("d-none");
-                    $("#restaurantP").append("<img class='animated infinite rotateIn rotateOut loadingRest' src='assets/images/logo_small.svg'>");
 
-
+                $("#userForm").addClass("d-none");
+                $("#restaurant-list").removeClass("d-none");
+                $("#restaurantP").append("<img class='animated infinite rotateIn rotateOut loadingRest' src='assets/images/logo_small.svg'>");
 
                     userObj["name"] = userName;
                     userObj["preference"] = userFoodPref;
