@@ -170,7 +170,7 @@ $(document).ready(function () {
                 msgErrorTag.attr("id","errorText")
                 msgErrorTag.addClass("font-weight-bold text-danger text-right my-auto");
 
-                $("#submitMessage").append(msgErrorTag);
+                $("#submitMessage").html(msgErrorTag);
                 // $("#warningModal").modal('toggle');
                 // $("#warningModal").modal('show');
               // alert("Fill it out");
