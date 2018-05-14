@@ -22,6 +22,9 @@ $(document).ready(function () {
 
     var foodPrefArr = ["American", "Chinese", "Filipino", "French", "German", "Indian", "Italian", "Japanese", "Korean", "Mexican", "Norwegian", "Portuguese", "Spanish", "Thai", "Vietnamese"];
 
+    
+    var timePrefArr = ["6:00 AM", "7:00 AM", "8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM", "7:00 PM", "8:00 PM", "9:00 PM"];
+
     var selectedRestName = "";
     var selectedRestAddress = "";
     var selectedRestImgUrl = "";
@@ -32,6 +35,14 @@ $(document).ready(function () {
         foodOption.attr("value", foodPrefArr[i]);
         foodOption.text(foodPrefArr[i]);
         $("#foodPref").append(foodOption);
+    };
+
+
+    for (var i = 0; i < timePrefArr.length; i++) {
+        var timeOption = $("<option>");
+        timeOption.attr("value", timePrefArr[i]);
+        timeOption.text(timePrefArr[i]);
+        $("#timePref").append(timeOption);
     };
 
     //input an event when a file is uploaded.
@@ -153,6 +164,7 @@ $(document).ready(function () {
                                 restDiv.attr('data-id', results[i]['id']);
                                 restDiv.attr('data-name', restName);
                                 restDiv.attr('data-address', restAddress);
+                                restDiv.attr('data-imgURL', restImgURL);
                                 // restDiv.attr('data-url', results[i]['url'])
 
                                 restDivRow.addClass('row');
@@ -216,34 +228,55 @@ $(document).ready(function () {
 
 
                 // adding new section for the 'matched' restaurant results to display when matched with your buddy.
+                var restChosenDiv = $('<div>');
+                var restChosenDivSec1 = $('<div>');
+                var restChosenDivSec2 = $('<div>');
                 var restNameMatchTag = $('<h3>');
-                var restAddressMatch = $('<p>');
+                var restAddrMatchTag = $('<p>');
+                var restPrefTimeMatchTag = $('<p>');
+                var restRestImgTag = $('<img>');
+
                 restNameMatchTag.text($(this).attr('data-name'));
-                restAddressMatch.text($(this).attr('data-address'));
-                // console.log($(this).attr('data-name'));
-                $('#restaurant-info').append(restNameMatchTag);
-                $('#restaurant-info').append(restAddressMatch);
-                console.log($(this).attr('data-address'));
+                restAddrMatchTag.text($(this).attr('data-address'));
+                restPrefTimeMatchTag.attr('id', 'meetUpTime');
+                restPrefTimeMatchTag.text("Please meet up at: " + userObj["preference time"]);
+                restRestImgTag.attr('src', $(this).attr('data-imgURL'));
+                restRestImgTag.addClass('img-fluid');
+
+                restChosenDiv.addClass("row");
+                restChosenDivSec1.addClass("col-md-3");
+                restChosenDivSec2.addClass("col-md-9");
+
+                restChosenDivSec1.append(restRestImgTag);
+                restChosenDivSec2.append(restNameMatchTag);
+                restChosenDivSec2.append(restAddrMatchTag);
+                restChosenDivSec2.append(restPrefTimeMatchTag);
+
+                restChosenDiv.append(restChosenDivSec1);
+                restChosenDiv.append(restChosenDivSec2);
+
+                $('#restaurant-info').append(restChosenDiv);
+
 
 
                 //Cycling through current connections, however it is currently including the user from above due to "connectionsRef.push(userObj)"
                 //May need to create a unique number ID as part of the object prior to push.
                 database.ref("/connections").on("child_added", function (childSnapshot) {
 
-                    matchRestID = childSnapshot.val()["rest ID"];
-                    matchUniqueID = childSnapshot.key;
+                    var matchRestID = childSnapshot.val()["rest ID"];
+                    var matchUniqueID = childSnapshot.key;
+                    var matchTimePref = childSnapshot.val()["preference time"];
                     // console.log(userObj["rest ID"]);
                     // console.log(matchRestID);
                     // console.log(newID);
                     // console.log(matchUniqueID);
 
-                    if ((matchRestID === userObj["rest ID"]) && (newID !== matchUniqueID)) {
-                        console.log("WOOOHOOO")
+                    if ((matchRestID === userObj["rest ID"]) && (matchTimePref === userObj["preference time"]) && (newID !== matchUniqueID)) {
+
                         var headerText = "";
                         userMatched = true;
 
                         listOfBuddies.push(childSnapshot.val()["name"]);
-                        console.log(listOfBuddies);
                         listofBudImgs.push(childSnapshot.val()["imageURL"])
 
                         $("#buddyResults").empty();
