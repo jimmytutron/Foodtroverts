@@ -11,6 +11,9 @@ h1 {
     text-align: center;
 }
 
+.loading {
+    max-width: 150px;
+}
 .jumbotron {
     background-image: url("../images/background.png");
     background-position: center;

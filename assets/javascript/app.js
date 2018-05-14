@@ -243,8 +243,13 @@ $(document).ready(function () {
 
                         var buddyDiv = $("<div>");
                         var header = $("<h3>");
+                        var loadingImg = $("<img>");
+                        loadingImg.attr("src", "assets/images/logo_small.svg");
+                        loadingImg.addClass('animated infinite rotateIn rotateOut loading');
                         header.text("Still searching for a buddy...");
+                        buddyDiv.append(loadingImg);
                         buddyDiv.append(header);
+
 
                         $("#buddyResults").append(buddyDiv);
                     }
