@@ -18,7 +18,7 @@ h1 {
 }
 
 
-@media only screen and (max-width: 1300px) {
+@media screen and (max-width: 1300px) {
 .jumbotron {
     background-image: url("../images/background-smaller.png");
     background-position: center;
@@ -26,7 +26,7 @@ h1 {
 }
 }
 
-@media only screen and (max-width: 860px) {
+@media screen and (max-width: 860px) {
 .jumbotron {
     background-image: url("../images/background-smallest.png");
     background-position: center;
@@ -36,12 +36,12 @@ h1 {
 }
 
 
-@media only screen and (max-width: 560px) {
+@media screen and (max-width: 560px) {
 .jumbotron {
     background-image: url("../images/background-mobile.png");
     background-position: center;
     background-repeat: no-repeat;
-    height: 481px;
+    height: 333px;
 }
 }
 a.nav-item.nav-link.active {
