@@ -29,6 +29,8 @@ $(document).ready(function () {
         //append a small image of user.
         // setting selectedFile to be the file being uploaded.
         selectedFile = event.target.files[0];
+
+        $("#fileLabel").text(selectedFile.name);
     });
 
 
