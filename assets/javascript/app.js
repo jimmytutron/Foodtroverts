@@ -20,9 +20,19 @@ $(document).ready(function () {
     var storageRef;
     var userDisplayImg = $("<img>");
 
+    var foodPrefArr = ["American","Chinese","Filipino","French","German","Indian","Italian","Japanese","Korean","Mexican","Norwegian","Portuguese","Spanish","Thai"];
+
     var selectedRestName = "";
     var selectedRestAddress = "";
     var selectedRestImgUrl = "";
+
+
+    for(var i = 0; i < foodPrefArr.length; i++){
+        var foodOption = $("<option>");
+        foodOption.attr("value", foodPrefArr[i]);
+        foodOption.text(foodPrefArr[i]);
+        $("#foodPref").append(foodOption);
+    };
 
     //input an event when a file is uploaded.
     $("#file").on("change", function (event) {
