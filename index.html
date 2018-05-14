@@ -22,130 +22,120 @@
 
 <body>
     <!-- Sticky NavBar -->
-    <div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Missing form information!</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Please fill in missing parts in form!
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color:#fff">
+        <a class="navbar-brand" href="#top">
+            <img class="logo" src="assets/images/logo.svg">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto w-100 justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#getStarted">Get Started</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact Us</a>
+                </li>
+            </ul>
         </div>
-    </div>
-    <div id="nav-bar">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#First">
-                        <img class="logo" src="assets/images/logo.svg">
-                        <!--img src="" alt="logo"-->
-                    </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    </a>
-                    <a class="nav-item nav-link" href="#"> About </a>
-                    <a class="nav-item nav-link" href="#"> Get Started </a>
-                </div>
-            </div>
-        </nav>
-    </div>
+    </nav>
     <!-- JumboTron(Covers Whole page, inc NavBar) -->
-    <div class="jumbotron jumbotron-fluid">
-        <div class="arrow-container">
-            <a href="#aboutSection"><img src="assets/images/down-arrow.svg" class="arrow js-scroll-trigger" alt="Responsive arrows"></a>
+    <section id="top">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="arrow-container">
+                <a href="#about"><img src="assets/images/down-arrow.svg" class="arrow js-scroll-trigger" alt="Responsive arrows"></a>
+            </div>
         </div>
-    </div>
-    <div id="aboutSection" class="container">
+    </section>
+    <div class="container">
         <!-- End of "page 1" -->
-        <div class="card my-4">
-            <div class="card-body row justify-content-center">
-                <div class="col-lg-6">
-                    <img src="https://source.unsplash.com/900x900/?food" class="img-fluid">
-                </div>
-                <div class="col-lg-6">
-                    <h1>About Foodtroverts</h1>
-                    <p>Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic. Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini. Turnip greens yarrow ricebean rutabaga endive cauliflower sea lettuce kohlrabi amaranth water spinach avocado daikon napa cabbage asparagus winter purslane kale. Celery potato scallion desert raisin horseradish spinach carrot soko. Lotus root water spinach fennel kombu maize bamboo shoot green bean swiss chard seakale pumpkin onion chickpea gram corn pea. Brussels sprout coriander water chestnut gourd swiss chard wakame kohlrabi beetroot carrot watercress. Corn amaranth salsify bunya nuts nori azuki bean chickweed potato bell pepper artichoke.</p>
+        <section id="about">
+            <div class="card my-4">
+                <div class="card-body row justify-content-center">
+                    <div class="col-lg-6">
+                        <img src="https://source.unsplash.com/900x900/?food" class="img-fluid">
+                    </div>
+                    <div class="col-lg-6">
+                        <h1>About Foodtroverts</h1>
+                        <p>Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic. Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini. Turnip greens yarrow ricebean rutabaga endive cauliflower sea lettuce kohlrabi amaranth water spinach avocado daikon napa cabbage asparagus winter purslane kale. Celery potato scallion desert raisin horseradish spinach carrot soko. Lotus root water spinach fennel kombu maize bamboo shoot green bean swiss chard seakale pumpkin onion chickpea gram corn pea. Brussels sprout coriander water chestnut gourd swiss chard wakame kohlrabi beetroot carrot watercress. Corn amaranth salsify bunya nuts nori azuki bean chickweed potato bell pepper artichoke.</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
         <!-- Page 2 -->
-        <div class="card my-2" id="userForm">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-12">
-                        <h1>Get Started!</h1>
+        <section id="getStarted">
+            <div class="card my-2" id="userForm">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1>Get Started!</h1>
+                        </div>
                     </div>
+                    <form>
+                        <div class="form-row justify-content-center">
+                            <div class="form-group col-md-8">
+                                <label for="userName">What's Your Name?</label>
+                                <input type="name" class="form-control" id="userName" aria-describedby="nameNote" placeholder="John Doe">
+                                <small id="nameNote" class="form-text text-muted"> Nicknames accepted for privacy purposes.</small>
+                            </div>
+                        </div>
+                        <div class="form-row justify-content-center">
+                            <div class="form-group col-md-8" id="uploadedImg">
+                            </div>
+                        </div>
+                        <div class="form-row justify-content-center my-3">
+                            <div class="custom-file col-md-8">
+                                <input type="file" class="custom-file-input upload-group" id="file">
+                                <label class="custom-file-label" for="validatedCustomFile" id="fileLabel">Upload an image!</label>
+                                <small id="imageNote" class="form-text text-muted">Accepted file formats: .jpg, .jpeg, .gif, .png</small>
+                            </div>
+                        </div>
+                        <div class="form-row justify-content-end mt-4">
+                            <div class="form-group col-md-3">
+                                <button id="submitImage" class="btn btn-light">Upload</button>
+                            </div>
+                        </div>
+                        <!-- drop down for food selections -->
+                        <div class="form-row justify-content-center">
+                            <div class="form-group col-md-4 col-sm-12">
+                                <p>What are you hungry for?</p>
+                                <select id="foodPref" class="custom-select">
+                                    <option selected>Select</option>
+                                </select>
+                            </div>
+                            <br>
+                            <!-- Dropdown 2 for meal - 'timePref' -->
+                            <div class="form-group col-md-4 col-sm-12">
+                                <p>When do you wanna eat?</p>
+                                <select id="timePref" class="custom-select">
+                                    <option selected>Select</option>
+                                    <option value="breakfast">- Breakfast (7am - 11am)</option>
+                                    <option value="lunch">- Lunch (11am - 5pm)</option>
+                                    <option value="dinner">- Dinner (5pm - 9pm)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row justify-content-center">
+                            <div class="form-group col-md-8">
+                                <label for="currentLocation">Location</label>
+                                <input type="location" class="form-control" id="userLoc" placeholder="Enter a zip code or a city name">
+                            </div>
+                        </div>
+                        <div class="form-row justify-content-end">
+                            <div id="submitMessage" class="col-md-9">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <button id="submitPref" class="btn btn-light">Lets Eat!</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <form>
-                    <div class="form-row justify-content-center">
-                        <div class="form-group col-md-8">
-                            <label for="userName">What's Your Name?</label>
-                            <input type="name" class="form-control" id="userName" aria-describedby="nameNote" placeholder="John Doe">
-                            <small id="nameNote" class="form-text text-muted"> Nicknames accepted for privacy purposes.</small>
-                        </div>
-                    </div>
-                    <div class="form-row justify-content-center">
-                        <div class="form-group col-md-8" id="uploadedImg">
-                        </div>
-                    </div>
-                    <div class="form-row justify-content-center my-3">
-                        <div class="custom-file col-md-8">
-                            <input type="file" class="custom-file-input upload-group" id="file">
-                            <label class="custom-file-label" for="validatedCustomFile" id="fileLabel">Upload an image!</label>
-                            <small id="imageNote" class="form-text text-muted">Accepted file formats: .jpg, .jpeg, .gif, .png</small>
-                        </div>
-                    </div>
-                    <div class="form-row justify-content-end mt-4">
-                        <div class="form-group col-md-3">
-                            <button id="submitImage" class="btn btn-light">Upload</button>
-                        </div>
-                    </div>
-                    <!-- drop down for food selections -->
-                    <div class="form-row justify-content-center">
-                        <div class="form-group col-md-4 col-sm-12">
-                            <p>What are you hungry for?</p>
-                            <select id="foodPref" class="custom-select">
-                                <option selected>Select</option>
-                            </select>
-                        </div>
-                        <br>
-                        <!-- Dropdown 2 for meal - 'timePref' -->
-                        <div class="form-group col-md-4 col-sm-12">
-                            <p>When do you wanna eat?</p>
-                            <select id="timePref" class="custom-select">
-                                <option selected>Select</option>
-                                <option value="breakfast">- Breakfast (7am - 11am)</option>
-                                <option value="lunch">- Lunch (11am - 5pm)</option>
-                                <option value="dinner">- Dinner (5pm - 9pm)</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-row justify-content-center">
-                        <div class="form-group col-md-8">
-                            <label for="currentLocation">Location</label>
-                            <input type="location" class="form-control" id="userLoc" placeholder="Enter a zip code or a city name">
-                        </div>
-                    </div>
-                    <div class="form-row justify-content-end">
-                        <div id="submitMessage" class="col-md-9">
-                        </div>
-                        <div class="form-group col-md-3">
-                            <button id="submitPref" class="btn btn-light">Lets Eat!</button>
-                        </div>
-                    </div>
-                </form>
             </div>
-        </div>
+        </section>
         <!-- Restaurant Section, page 4 -->
         <div class="card my-2 d-none" id="restaurant-list">
             <div class="card-body">
@@ -172,6 +162,19 @@
     </footer>
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <!-- SMOOTH SCROLL -->
+    <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+    </script>
+    <!-- End of SMOOTH SCROLL -->
     <!-- Firebase Reference -->
     <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
     <!-- Bootstrap -->
