@@ -15,6 +15,14 @@ h1 {
 .loading {
     max-width: 150px;
 }
+
+.loadingRest {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 200px;
+    padding: 10px;
+}
 .jumbotron {
     background-image: url("../images/background.png");
     background-position: center;
