@@ -167,7 +167,7 @@ $(document).ready(function () {
                                 restDiv.attr('data-imgURL', restImgURL);
                                 // restDiv.attr('data-url', results[i]['url'])
 
-                                restDivRow.addClass('row justify-content-center');
+                                restDivRow.addClass('row justify-content-center animated fadeInLeft');
 
                                 restDivSec1.addClass('col-md-4')
                                 restImgTag.addClass('img-fluid');
@@ -282,7 +282,7 @@ $(document).ready(function () {
                         $("#buddyResults").empty();
                         var header = $("<h3 class='text-center'>");
                         var headerColumn = $("<div>");
-                        headerColumn.addClass('col-sm-12 col-md-12 col-lg-3 mx-auto')
+                        headerColumn.addClass('col-12 mx-auto')
                         header.text("We found some fellow Foodtroverts!");
                         headerColumn.append(header);
 
@@ -292,7 +292,7 @@ $(document).ready(function () {
 
                         for (var i = 0; i < listOfBuddies.length; i++) {
                             var buddyColumn = $("<div>");
-                            buddyColumn.addClass('col-sm-12 col-md-12 col-lg-3 mx-auto');
+                            buddyColumn.addClass('col-sm-12 col-md-12 col-lg-3 mx-auto animated slideInDown');
 
                             var imageTag = $("<img>");
                             var imageSrc = listofBudImgs[i];
