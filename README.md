@@ -29,7 +29,7 @@ Launch Foodtroverts [here!](https://jimmytutron.github.io/Foodtroverts/)
 
 ## Acknowledgments :pray:
 
-Thanks to the following people so far...
+Thanks to the following people for their beautiful :sparkles:animations:sparkles: libraries!
 
 * [Animate.css](https://daneden.github.io/animate.css/) - [Daniel Eden](https://daneden.me/)
-* [Hover.css](http://ianlunn.github.io/Hover/) - [Ian Lunn](https://github.com/IanLunn)
+* [AOS - Animate of Scroll Library](https://michalsnik.github.io/aos/) - [Michal Snik](https://github.com/michalsnik)
