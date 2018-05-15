@@ -109,8 +109,9 @@ $(document).ready(function () {
                 var userFoodPref = $("#foodPref").val().trim();
                 var userPrefTime = $("#timePref").val().trim();
                 var userLoc = $("#userLoc").val().trim();
+
                 console.log("ENTERED SUBMIT")
-                if (userName !== '' && userFoodPref !== 'Select' && userPrefTime !== 'Select') {
+                if (userName !== '' && userFoodPref !== 'Select' && userPrefTime !== 'Select' && userImgURL !== '') {
                     console.log("ENTERED IF")
 
                 $("#userForm").addClass("d-none");
@@ -193,7 +194,7 @@ $(document).ready(function () {
                 } else {
                     console.log("ENTERED ELSE")
                     var msgErrorTag = $("<h4>");
-                    var msgError = "Missing an input please check."
+                    var msgError = "Missing an input or image upload please check."
                     msgErrorTag.text(msgError);
 
                     msgErrorTag.attr("id", "errorText")
