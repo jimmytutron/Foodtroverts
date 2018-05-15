@@ -167,14 +167,14 @@ $(document).ready(function () {
                                 restDiv.attr('data-imgURL', restImgURL);
                                 // restDiv.attr('data-url', results[i]['url'])
 
-                                restDivRow.addClass('row');
+                                restDivRow.addClass('row justify-content-center');
 
-                                restDivSec1.addClass('col-md-3')
+                                restDivSec1.addClass('col-md-4')
                                 restImgTag.addClass('img-fluid');
                                 restImgTag.attr("src", restImgURL);
                                 restDivSec1.append(restImgTag);
 
-                                restDivSec2.addClass('col-md-9')
+                                restDivSec2.addClass('col-md-4')
                                 restNameTag.text(restName);
                                 restAddressTag.text(restAddress);
                                 restDivSec2.append(restNameTag);
@@ -243,9 +243,9 @@ $(document).ready(function () {
                 restRestImgTag.attr('src', $(this).attr('data-imgURL'));
                 restRestImgTag.addClass('img-fluid');
 
-                restChosenDiv.addClass("row");
-                restChosenDivSec1.addClass("col-md-3");
-                restChosenDivSec2.addClass("col-md-9");
+                restChosenDiv.addClass("row justify-content-center");
+                restChosenDivSec1.addClass("col-md-4");
+                restChosenDivSec2.addClass("col-md-4");
 
                 restChosenDivSec1.append(restRestImgTag);
                 restChosenDivSec2.append(restNameMatchTag);
