@@ -86,6 +86,17 @@ a.navbar-brand {
     
 }
 
+/* carousel */
+.carousel-inner{
+    height: 90px;
+    font-size: 12px;
+}
+
+.reviews{
+
+}
+
+
 .arrow{
  display: block;
  max-width: 75px;
