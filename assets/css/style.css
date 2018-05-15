@@ -5,6 +5,7 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover; 
     background-size: cover;
+    overflow: visible;
 }
 
 h1 {
@@ -13,6 +14,14 @@ h1 {
 
 .loading {
     max-width: 150px;
+}
+
+.loadingRest {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 200px;
+    padding: 10px;
 }
 .jumbotron {
     background-image: url("../images/background.png");
@@ -58,9 +67,14 @@ a.nav-item.nav-link.active {
 }
 
 .logo{
-    height: 50px;
+    height: 40px;
 }
+.foodtronav{
+    background-color: #fff;
+    opacity: 0.9;
+    background-blend-mode: multiply;
 
+}
 .footer{
     color: #fff;
 }

@@ -20,18 +20,29 @@ $(document).ready(function () {
     var storageRef;
     var userDisplayImg = $("<img>");
 
-    var foodPrefArr = ["American","Chinese","Filipino","French","German","Indian","Italian","Japanese","Korean","Mexican","Norwegian","Portuguese","Spanish","Thai", "Vietnamese"];
+    var foodPrefArr = ["American", "Chinese", "Filipino", "French", "German", "Indian", "Italian", "Japanese", "Korean", "Mexican", "Norwegian", "Portuguese", "Spanish", "Thai", "Vietnamese"];
+
+    
+    var timePrefArr = ["6:00 AM", "7:00 AM", "8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM", "7:00 PM", "8:00 PM", "9:00 PM"];
 
     var selectedRestName = "";
     var selectedRestAddress = "";
     var selectedRestImgUrl = "";
 
 
-    for(var i = 0; i < foodPrefArr.length; i++){
+    for (var i = 0; i < foodPrefArr.length; i++) {
         var foodOption = $("<option>");
         foodOption.attr("value", foodPrefArr[i]);
         foodOption.text(foodPrefArr[i]);
         $("#foodPref").append(foodOption);
+    };
+
+
+    for (var i = 0; i < timePrefArr.length; i++) {
+        var timeOption = $("<option>");
+        timeOption.attr("value", timePrefArr[i]);
+        timeOption.text(timePrefArr[i]);
+        $("#timePref").append(timeOption);
     };
 
     //input an event when a file is uploaded.
@@ -78,10 +89,10 @@ $(document).ready(function () {
             uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
                 console.log('File available at', downloadURL);
                 userImgURL = downloadURL;
-                userDisplayImg.attr("src",downloadURL);
+                userDisplayImg.attr("src", downloadURL);
                 userDisplayImg.addClass("userImage")
                 $("#uploadedImg").html(userDisplayImg);
-                
+
             });
         });
     });
@@ -99,83 +110,101 @@ $(document).ready(function () {
                 var userPrefTime = $("#timePref").val().trim();
                 var userLoc = $("#userLoc").val().trim();
                 console.log("ENTERED SUBMIT")
-                if(userName !== '' && userFoodPref !== 'Select' && userPrefTime !== 'Select'){
+                if (userName !== '' && userFoodPref !== 'Select' && userPrefTime !== 'Select') {
                     console.log("ENTERED IF")
+
                 $("#userForm").addClass("d-none");
                 $("#restaurant-list").removeClass("d-none");
-                $("#restaurantP").append("<img class='animated infinite rotateIn rotateOut loading' src='assets/images/logo_small.svg'>");
+                $("#restaurantP").append("<img class='animated infinite rotateIn rotateOut loadingRest' src='assets/images/logo_small.svg'>");
 
-              
+                    userObj["name"] = userName;
+                    userObj["preference"] = userFoodPref;
+                    userObj["preference time"] = userPrefTime;
+                    userObj["location"] = userLoc;
+                    userObj["imageURL"] = userImgURL;
+                    console.log(userObj);
 
-                userObj["name"] = userName;
-                userObj["preference"] = userFoodPref;
-                userObj["preference time"] = userPrefTime;
-                userObj["location"] = userLoc;
-                userObj["imageURL"] = userImgURL;
-                console.log(userObj);
+                    //=====IPData=======/
+                    $.get("https://api.ipdata.co/", function (res) {
 
-                //=====IPData=======/
-                $.get("https://api.ipdata.co/", function (res) {
-
-                    if (userLoc === "") {
-                        var currentCity = res["postal"];
-                        userObj.location = currentCity;
-                    }
-                    //=====Google Places=======/
-
-                    var authKey = "AIzaSyCOSZbFya-dU4ArdvJH1Ky343FY1Y6lhU8";
-                    var city = userObj["location"];
-                    var preference = userObj["preference"];
-                    var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + preference + " restaurants+in+" + city + "&key=" + authKey;
-
-                    $.ajax({
-                        url: queryURL,
-                        method: "GET"
-                    }).then(function (response) {
-                        // console.log("Place ID: " + response.results[0].place_id);
-                        var results = response.results
-
-                        for (var i = 0; i < 5; i++) {
-                            var restDiv = $('<div>');
-                            var restNameTag = $('<h4>');
-                            var restAddressTag = $('<p>');
-                            var restAddress = results[i]["formatted_address"];
-                            var restName = results[i]["name"];
-
-                            restDiv.addClass('restSelected');
-                            restDiv.attr('data-id', results[i]['id']);
-                            restDiv.attr('data-name', restName);
-                            restDiv.attr('data-address', restAddress);
-                            // restDiv.attr('data-url', results[i]['url'])
-
-                            restNameTag.text(restName);
-                            restAddressTag.text(restAddress);
-
-                            restDiv.append(restNameTag);
-                            restDiv.append(restAddressTag);
-                            $("#restaurantP img:last-child").remove();
-                            $('#restaurantP').append(restDiv);
-
+                        if (userLoc === "") {
+                            var currentCity = res["postal"];
+                            userObj.location = currentCity;
                         }
+                        //=====Google Places=======/
 
+                        var authKey = "AIzaSyAZPAsF-Fb-C5lnhtkitRLjplX24zRkqeE";
+                        var city = userObj["location"];
+                        var preference = userObj["preference"];
+                        var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + preference + " restaurants+in+" + city + "&key=" + authKey;
 
-                    }, "jsonp");
-                });
-            } else {
-                console.log("ENTERED ELSE")
-                var msgErrorTag = $("<h4>");
-                var msgError = "Missing an input please check."
-                msgErrorTag.text(msgError);
+                        $.ajax({
+                            url: queryURL,
+                            method: "GET"
+                        }).then(function (response) {
+                            // console.log("Place ID: " + response.results[0].place_id);
+                            var results = response.results
+                            console.log(results);
+                            $("#restaurantP img:last-child").remove();
+                            for (var i = 0; i < 5; i++) {
+                                var restDiv = $('<div>');
+                                var restDivRow = $('<div>');
+                                var restDivSec1 = $('<div>')
+                                var restDivSec2 = $('<div>')
+                                var restNameTag = $('<h4>');
+                                var restAddressTag = $('<p>');
+                                var restAddress = results[i]["formatted_address"];
+                                var restName = results[i]["name"];
+                                var restImgTag = $('<img>');
+                                var restImgPhotoRef = results[i]["photos"][0]["photo_reference"];
 
-                msgErrorTag.attr("id","errorText")
-                msgErrorTag.addClass("font-weight-bold text-danger text-right my-auto");
+                                var restImgURL = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=900&photoreference=" + restImgPhotoRef + "&key=" + authKey;
 
-                $("#submitMessage").append(msgErrorTag);
-                // $("#warningModal").modal('toggle');
-                // $("#warningModal").modal('show');
-              // alert("Fill it out");
-            }
-            //
+                                restDiv.addClass('restSelected card card-body');
+                                restDiv.attr('data-id', results[i]['id']);
+                                restDiv.attr('data-name', restName);
+                                restDiv.attr('data-address', restAddress);
+                                restDiv.attr('data-imgURL', restImgURL);
+                                // restDiv.attr('data-url', results[i]['url'])
+
+                                restDivRow.addClass('row justify-content-center animated fadeInLeft');
+
+                                restDivSec1.addClass('col-md-4')
+                                restImgTag.addClass('img-fluid');
+                                restImgTag.attr("src", restImgURL);
+                                restDivSec1.append(restImgTag);
+
+                                restDivSec2.addClass('col-md-4')
+                                restNameTag.text(restName);
+                                restAddressTag.text(restAddress);
+                                restDivSec2.append(restNameTag);
+                                restDivSec2.append(restAddressTag);
+
+                                restDivRow.append(restDivSec1);
+                                restDivRow.append(restDivSec2);
+                                restDiv.append(restDivRow);
+                                $('#restaurantP').append(restDiv);
+
+                            }
+                           
+
+                        }, "jsonp");
+                    });
+                } else {
+                    console.log("ENTERED ELSE")
+                    var msgErrorTag = $("<h4>");
+                    var msgError = "Missing an input please check."
+                    msgErrorTag.text(msgError);
+
+                    msgErrorTag.attr("id", "errorText")
+                    msgErrorTag.addClass("font-weight-bold text-danger text-right my-auto");
+
+                    $("#submitMessage").html(msgErrorTag);
+                    // $("#warningModal").modal('toggle');
+                    // $("#warningModal").modal('show');
+                    // alert("Fill it out");
+                }
+                //
             });
 
 
@@ -196,59 +225,86 @@ $(document).ready(function () {
                 var userMatched = false;
                 var listOfBuddies = [];
                 var listofBudImgs = [];
-                
+
 
                 // adding new section for the 'matched' restaurant results to display when matched with your buddy.
+                var restChosenDiv = $('<div>');
+                var restChosenDivSec1 = $('<div>');
+                var restChosenDivSec2 = $('<div>');
                 var restNameMatchTag = $('<h3>');
-                var restAddressMatch = $('<p>');
-                restNameMatchTag.text($(this).attr('data-name'));
-                restAddressMatch.text($(this).attr('data-address'));
-                // console.log($(this).attr('data-name'));
-                $('#restaurant-info').append(restNameMatchTag);
-                $('#restaurant-info').append(restAddressMatch);
-                console.log($(this).attr('data-address'));
+                var restAddrMatchTag = $('<p>');
+                var restPrefTimeMatchTag = $('<p>');
+                var restRestImgTag = $('<img>');
 
-                
+                restNameMatchTag.text($(this).attr('data-name'));
+                restAddrMatchTag.text($(this).attr('data-address'));
+                restPrefTimeMatchTag.attr('id', 'meetUpTime');
+                restPrefTimeMatchTag.text("Please meet up at: " + userObj["preference time"]);
+                restRestImgTag.attr('src', $(this).attr('data-imgURL'));
+                restRestImgTag.addClass('img-fluid');
+
+                restChosenDiv.addClass("row justify-content-center");
+                restChosenDivSec1.addClass("col-md-4");
+                restChosenDivSec2.addClass("col-md-4");
+
+                restChosenDivSec1.append(restRestImgTag);
+                restChosenDivSec2.append(restNameMatchTag);
+                restChosenDivSec2.append(restAddrMatchTag);
+                restChosenDivSec2.append(restPrefTimeMatchTag);
+
+                restChosenDiv.append(restChosenDivSec1);
+                restChosenDiv.append(restChosenDivSec2);
+
+                $('#restaurant-info').append(restChosenDiv);
+
+
+
                 //Cycling through current connections, however it is currently including the user from above due to "connectionsRef.push(userObj)"
                 //May need to create a unique number ID as part of the object prior to push.
                 database.ref("/connections").on("child_added", function (childSnapshot) {
 
-                    matchRestID = childSnapshot.val()["rest ID"];
-                    matchUniqueID = childSnapshot.key;
+                    var matchRestID = childSnapshot.val()["rest ID"];
+                    var matchUniqueID = childSnapshot.key;
+                    var matchTimePref = childSnapshot.val()["preference time"];
                     // console.log(userObj["rest ID"]);
                     // console.log(matchRestID);
                     // console.log(newID);
                     // console.log(matchUniqueID);
 
-                    if ((matchRestID === userObj["rest ID"]) && (newID !== matchUniqueID)) {
-                        console.log("WOOOHOOO")
+                    if ((matchRestID === userObj["rest ID"]) && (matchTimePref === userObj["preference time"]) && (newID !== matchUniqueID)) {
+
                         var headerText = "";
                         userMatched = true;
 
                         listOfBuddies.push(childSnapshot.val()["name"]);
-                        console.log(listOfBuddies);
                         listofBudImgs.push(childSnapshot.val()["imageURL"])
 
                         $("#buddyResults").empty();
-                        var buddyDiv = $("<div>");
-                        var header = $("<h3>");
-
+                        var header = $("<h3 class='text-center'>");
+                        var headerColumn = $("<div>");
+                        headerColumn.addClass('col-12 mx-auto')
                         header.text("We found some fellow Foodtroverts!");
-                        buddyDiv.append(header);
+                        headerColumn.append(header);
+
+                        $("#buddyHeader").html(headerColumn);
+
 
 
                         for (var i = 0; i < listOfBuddies.length; i++) {
+                            var buddyColumn = $("<div>");
+                            buddyColumn.addClass('col-sm-12 col-md-12 col-lg-3 mx-auto animated slideInDown');
+
                             var imageTag = $("<img>");
                             var imageSrc = listofBudImgs[i];
                             var personName = $("<p>");
 
                             imageTag.attr("src", imageSrc);
-                            imageTag.addClass("userImage");
+                            imageTag.addClass("userImage img-fluid");
                             personName.text(listOfBuddies[i]);
 
-                            buddyDiv.append(imageTag);
-                            buddyDiv.append(personName);
-                            $("#buddyResults").append(buddyDiv);
+                            buddyColumn.append(imageTag);
+                            buddyColumn.append(personName);
+                            $("#buddyResults").append(buddyColumn);
                         }
                         console.log(headerText);
 
