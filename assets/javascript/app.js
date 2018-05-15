@@ -20,16 +20,18 @@ $(document).ready(function () {
     var storageRef;
     var userDisplayImg = $("<img>");
 
+    // array for the users food preferences
     var foodPrefArr = ["American", "Chinese", "Filipino", "French", "German", "Indian", "Italian", "Japanese", "Korean", "Mexican", "Norwegian", "Portuguese", "Spanish", "Thai", "Vietnamese"];
 
-    
+    // array for the users time preferences    
     var timePrefArr = ["6:00 AM", "7:00 AM", "8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM", "7:00 PM", "8:00 PM", "9:00 PM"];
 
+    // empty variables for the users input
     var selectedRestName = "";
     var selectedRestAddress = "";
     var selectedRestImgUrl = "";
 
-
+    // for loop to run through the food preference array
     for (var i = 0; i < foodPrefArr.length; i++) {
         var foodOption = $("<option>");
         foodOption.attr("value", foodPrefArr[i]);
@@ -37,7 +39,7 @@ $(document).ready(function () {
         $("#foodPref").append(foodOption);
     };
 
-
+    //  for loop to run through the time preference array
     for (var i = 0; i < timePrefArr.length; i++) {
         var timeOption = $("<option>");
         timeOption.attr("value", timePrefArr[i]);
@@ -60,8 +62,8 @@ $(document).ready(function () {
         event.preventDefault();
         var fileName = selectedFile.name;
         storageRef = firebase.storage().ref("images/" + fileName);
-        console.log("what is file name? " + fileName);
-
+        //console.log("what is file name? " + fileName);
+        // storing the image data
         var uploadTask = storageRef.put(selectedFile);
         $("#uploadedImg").html("<img class='animated infinite rotateIn rotateOut loading' src='assets/images/logo_small.svg'>");
         // Register three observers:
@@ -72,13 +74,14 @@ $(document).ready(function () {
             // Observe state change events such as progress, pause, and resume
             // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
             var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log('Upload is ' + progress + '% done');
+            //console.log('Upload is ' + progress + '% done');
+            //image uploading process
             switch (snapshot.state) {
                 case firebase.storage.TaskState.PAUSED: // or 'paused'
-                    console.log('Upload is paused');
+                    //console.log('Upload is paused');
                     break;
                 case firebase.storage.TaskState.RUNNING: // or 'running'
-                    console.log('Upload is running');
+                    //console.log('Upload is running');
                     break;
             }
         }, function (error) {
@@ -103,16 +106,18 @@ $(document).ready(function () {
         var userObj = {};
         if (snap.val()) {
             $("#submitPref").on("click", function (event) {
+                //preventing the page from reloading when the submit button is clicked
                 event.preventDefault();
-
+                // create variables for the user input to be stored, storing the value while using trim() to get rid of any excess white space
                 var userName = $("#userName").val().trim();
                 var userFoodPref = $("#foodPref").val().trim();
                 var userPrefTime = $("#timePref").val().trim();
                 var userLoc = $("#userLoc").val().trim();
+                //console.log("ENTERED SUBMIT")
 
-                console.log("ENTERED SUBMIT")
-                if (userName !== '' && userFoodPref !== 'Select' && userPrefTime !== 'Select' && userImgURL !== '') {
-                    console.log("ENTERED IF")
+                
+                if (userName !== '' && userFoodPref !== 'Select' && userPrefTime !== 'Select') {
+                    //console.log("ENTERED IF")
 
                 $("#userForm").addClass("d-none");
                 $("#restaurant-list").removeClass("d-none");
@@ -123,7 +128,7 @@ $(document).ready(function () {
                     userObj["preference time"] = userPrefTime;
                     userObj["location"] = userLoc;
                     userObj["imageURL"] = userImgURL;
-                    console.log(userObj);
+                    //console.log(userObj);
 
                     //=====IPData=======/
                     $.get("https://api.ipdata.co/", function (res) {
@@ -134,7 +139,7 @@ $(document).ready(function () {
                         }
                         //=====Google Places=======/
 
-                        var authKey = "AIzaSyAZPAsF-Fb-C5lnhtkitRLjplX24zRkqeE";
+                        var authKey = "AIzaSyCOSZbFya-dU4ArdvJH1Ky343FY1Y6lhU8";
                         var city = userObj["location"];
                         var preference = userObj["preference"];
                         var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + preference + " restaurants+in+" + city + "&key=" + authKey;
@@ -159,7 +164,7 @@ $(document).ready(function () {
                                 var restImgTag = $('<img>');
                                 var restImgPhotoRef = results[i]["photos"][0]["photo_reference"];
 
-                                var restImgURL = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=900&photoreference=" + restImgPhotoRef + "&key=" + authKey;
+                                var restImgURL = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference=" + restImgPhotoRef + "&key=" + authKey;
 
                                 restDiv.addClass('restSelected card card-body');
                                 restDiv.attr('data-id', results[i]['id']);
@@ -168,7 +173,7 @@ $(document).ready(function () {
                                 restDiv.attr('data-imgURL', restImgURL);
                                 // restDiv.attr('data-url', results[i]['url'])
 
-                                restDivRow.addClass('row justify-content-center animated fadeInLeft');
+                                restDivRow.addClass('row justify-content-center');
 
                                 restDivSec1.addClass('col-md-4')
                                 restImgTag.addClass('img-fluid');
@@ -194,7 +199,7 @@ $(document).ready(function () {
                 } else {
                     console.log("ENTERED ELSE")
                     var msgErrorTag = $("<h4>");
-                    var msgError = "Missing an input or image upload please check."
+                    var msgError = "Missing an input please check."
                     msgErrorTag.text(msgError);
 
                     msgErrorTag.attr("id", "errorText")
@@ -248,6 +253,7 @@ $(document).ready(function () {
                 restChosenDivSec1.addClass("col-md-4");
                 restChosenDivSec2.addClass("col-md-4");
 
+                // append the images and the restaurant information for choices
                 restChosenDivSec1.append(restRestImgTag);
                 restChosenDivSec2.append(restNameMatchTag);
                 restChosenDivSec2.append(restAddrMatchTag);
@@ -263,7 +269,7 @@ $(document).ready(function () {
                 //Cycling through current connections, however it is currently including the user from above due to "connectionsRef.push(userObj)"
                 //May need to create a unique number ID as part of the object prior to push.
                 database.ref("/connections").on("child_added", function (childSnapshot) {
-
+                    // storing into the data and running it.
                     var matchRestID = childSnapshot.val()["rest ID"];
                     var matchUniqueID = childSnapshot.key;
                     var matchTimePref = childSnapshot.val()["preference time"];
@@ -272,61 +278,62 @@ $(document).ready(function () {
                     // console.log(newID);
                     // console.log(matchUniqueID);
 
+                    // if the user is MATCHED, do the following
                     if ((matchRestID === userObj["rest ID"]) && (matchTimePref === userObj["preference time"]) && (newID !== matchUniqueID)) {
 
                         var headerText = "";
                         userMatched = true;
-
+                        //store the list in the data base
                         listOfBuddies.push(childSnapshot.val()["name"]);
                         listofBudImgs.push(childSnapshot.val()["imageURL"])
 
                         $("#buddyResults").empty();
-                        var header = $("<h3 class='text-center'>");
-                        var headerColumn = $("<div>");
-                        headerColumn.addClass('col-12 mx-auto')
-                        header.text("We found some fellow Foodtroverts!");
-                        headerColumn.append(header);
-
-                        $("#buddyHeader").html(headerColumn);
-
-
-
-                        for (var i = 0; i < listOfBuddies.length; i++) {
-                            var buddyColumn = $("<div>");
-                            buddyColumn.addClass('col-sm-12 col-md-12 col-lg-3 mx-auto animated slideInDown');
-
-                            var imageTag = $("<img>");
-                            var imageSrc = listofBudImgs[i];
-                            var personName = $("<p>");
-
-                            imageTag.attr("src", imageSrc);
-                            imageTag.addClass("userImage img-fluid");
-                            personName.text(listOfBuddies[i]);
-
-                            buddyColumn.append(imageTag);
-                            buddyColumn.append(personName);
-                            $("#buddyResults").append(buddyColumn);
-                        }
-                        console.log(headerText);
-
-                    } else if (userMatched === false) {
-                        console.log("sorry no match yet :(")
-                        $("#buddyResults").empty();
-
                         var buddyDiv = $("<div>");
                         var header = $("<h3>");
-                        var loadingImg = $("<img>");
-                        loadingImg.attr("src", "assets/images/logo_small.svg");
-                        loadingImg.addClass('animated infinite rotateIn rotateOut loading');
-                        header.text("Searching for fellow Foodtroverts...");
-                        buddyDiv.append(loadingImg);
+                        // when the buddy has match, append this message
+                        header.text("We found some fellow Foodtroverts!");
                         buddyDiv.append(header);
 
 
+                        // list the buddies with the match, multiple can be included in the result
+                        for (var i = 0; i < listOfBuddies.length; i++) {
+                            
+                            var imageTag = $("<img>");
+                            var imageSrc = listofBudImgs[i];
+                            var personName = $("<p>");
+                            
+                            imageTag.attr("src", imageSrc);
+                            imageTag.addClass("userImage");
+                            personName.text(listOfBuddies[i]);
+                            // append the buddy results that you are matched with
+                            buddyDiv.append(imageTag);
+                            buddyDiv.append(personName);
+                            $("#buddyResults").append(buddyDiv);
+                        }
+                        //console.log(headerText);
+
+                        //if the user DOES NOT have a match
+                    } else if (userMatched === false) {
+                        //console.log("sorry no match yet :(")
+                        $("#buddyResults").empty();
+                        //creating a space to append the results
+                        var buddyDiv = $("<div>");
+                        var header = $("<h3>");
+                        var loadingImg = $("<img>");
+                        // loading image that appears to show the program is still searching for a buddy
+                        loadingImg.attr("src", "assets/images/logo_small.svg");
+                        loadingImg.addClass('animated infinite rotateIn rotateOut loading');
+                        header.text("Searching for fellow Foodtroverts...");
+                        // append the image logo
+                        buddyDiv.append(loadingImg);
+                        buddyDiv.append(header);
+
+                        // append buddy results
                         $("#buddyResults").append(buddyDiv);
                     }
 
                 })
+                // on disconnect remove all data stored in firebase
                 con.onDisconnect().remove().then(function () {
                     // storageRef.delete();
                 });
