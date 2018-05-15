@@ -67,6 +67,10 @@ a.nav-item.nav-link.active {
     margin-right: auto;
 }
 
+.reviews {
+    font-size: 1.1em;
+}
+
 .logo{
     height: 40px;
 }
