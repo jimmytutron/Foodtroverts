@@ -133,7 +133,7 @@ $(document).ready(function () {
                         }
                         //=====Google Places=======/
 
-                        var authKey = "AIzaSyCOSZbFya-dU4ArdvJH1Ky343FY1Y6lhU8";
+                        var authKey = "AIzaSyAZPAsF-Fb-C5lnhtkitRLjplX24zRkqeE";
                         var city = userObj["location"];
                         var preference = userObj["preference"];
                         var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + preference + " restaurants+in+" + city + "&key=" + authKey;
@@ -158,7 +158,7 @@ $(document).ready(function () {
                                 var restImgTag = $('<img>');
                                 var restImgPhotoRef = results[i]["photos"][0]["photo_reference"];
 
-                                var restImgURL = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference=" + restImgPhotoRef + "&key=" + authKey;
+                                var restImgURL = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=900&photoreference=" + restImgPhotoRef + "&key=" + authKey;
 
                                 restDiv.addClass('restSelected card card-body');
                                 restDiv.attr('data-id', results[i]['id']);
@@ -280,25 +280,31 @@ $(document).ready(function () {
                         listofBudImgs.push(childSnapshot.val()["imageURL"])
 
                         $("#buddyResults").empty();
-                        var buddyDiv = $("<div>");
-                        var header = $("<h3>");
-
+                        var header = $("<h3 class='text-center'>");
+                        var headerColumn = $("<div>");
+                        headerColumn.addClass('col-sm-12 col-md-12 col-lg-3 mx-auto')
                         header.text("We found some fellow Foodtroverts!");
-                        buddyDiv.append(header);
+                        headerColumn.append(header);
+
+                        $("#buddyHeader").html(headerColumn);
+
 
 
                         for (var i = 0; i < listOfBuddies.length; i++) {
+                            var buddyColumn = $("<div>");
+                            buddyColumn.addClass('col-sm-12 col-md-12 col-lg-3 mx-auto');
+
                             var imageTag = $("<img>");
                             var imageSrc = listofBudImgs[i];
                             var personName = $("<p>");
 
                             imageTag.attr("src", imageSrc);
-                            imageTag.addClass("userImage");
+                            imageTag.addClass("userImage img-fluid");
                             personName.text(listOfBuddies[i]);
 
-                            buddyDiv.append(imageTag);
-                            buddyDiv.append(personName);
-                            $("#buddyResults").append(buddyDiv);
+                            buddyColumn.append(imageTag);
+                            buddyColumn.append(personName);
+                            $("#buddyResults").append(buddyColumn);
                         }
                         console.log(headerText);
 
