@@ -93,14 +93,13 @@ a.navbar-brand {
 
 /* carousel */
 .carousel-inner{
-    height: 90px;
-    font-size: 12px;
+    height: 150px;
 }
-
-.reviews{
-
+@media screen and (max-width: 767px){
+.carousel-inner{
+    height: auto;
 }
-
+}
 
 .arrow{
  display: block;
