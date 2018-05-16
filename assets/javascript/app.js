@@ -110,9 +110,8 @@ $(document).ready(function () {
                 var userPrefTime = $("#timePref").val().trim();
                 var userLoc = $("#userLoc").val().trim();
 
-                console.log("ENTERED SUBMIT")
                 if (userName !== '' && userFoodPref !== 'Select' && userPrefTime !== 'Select' && userImgURL !== '') {
-                    console.log("ENTERED IF")
+
 
                 $("#userForm").addClass("d-none");
                 $("#restaurant-list").removeClass("d-none");
