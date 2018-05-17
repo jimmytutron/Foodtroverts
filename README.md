@@ -61,31 +61,18 @@ and of course a big thank you to our instructor and TAs, without their help we w
 Applying AOS for element to fade in from the left and modifying its duration and transition animations
 
 ```html        
-        <section id="howTo">
-            <div class="card my-4" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="500">
-                <div class="card-body row justify-content-center">
-                    <div class="col-lg-6">
-                        <h1>How To</h1>
-                        <p>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
+
+<div class="card my-4" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="500">
+
 ```
 
 ### Using Animate.css to create a loading icon
 
 ```javascript      
-        $("#restaurantP").append("<img class='animated infinite rotateIn rotateOut loadingRest' src='assets/images/logo_small.svg'>");
+$("#restaurantP").append("<img class='animated infinite rotateIn rotateOut loadingRest' src='assets/images/logo_small.svg'>");
 
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function (response) {
-            $("#restaurantP img:last-child").remove();
-            ...
-        });
+//removing the loading icon when restuarants are populated
+$("#restaurantP img:last-child").remove();
 ```
 
 ### Using Firebase Storage
@@ -93,45 +80,43 @@ Applying AOS for element to fade in from the left and modifying its duration and
 Uploading an image/file to Firebase storage, providing a loading image, and retrieving url for download.
 
 ```javascript        
-    var storageRef;
+var storageRef;
 
-    $("#file").on("change", function (event) {
-        selectedFile = event.target.files[0];
-        $("#fileLabel").text(selectedFile.name);
-    });
+$("#file").on("change", function (event) {
+    selectedFile = event.target.files[0];
+    $("#fileLabel").text(selectedFile.name);
+});
 
-    $("#submitImage").on("click", function () {
-        event.preventDefault();
-        var fileName = selectedFile.name;
-        storageRef = firebase.storage().ref("images/" + fileName);
+$("#submitImage").on("click", function () {
+    event.preventDefault();
+    var fileName = selectedFile.name;
+    storageRef = firebase.storage().ref("images/" + fileName);
 
-        var uploadTask = storageRef.put(selectedFile);
-        $("#uploadedImg").html("<img class='animated infinite rotateIn rotateOut loading' src='assets/images/logo_small.svg'>");
-        uploadTask.on('state_changed', function (snapshot) {
-            //progression of upload
-            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log('Upload is ' + progress + '% done');
-            switch (snapshot.state) {
-                case firebase.storage.TaskState.PAUSED: // or 'paused'
-                    console.log('Upload is paused');
-                    break;
-                case firebase.storage.TaskState.RUNNING: // or 'running'
-                    console.log('Upload is running');
-                    break;
-            }
-        }, function (error) {
-            // Handle unsuccessful uploads
-        }, function () {
-            // Handle successful uploads on complete
-            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-            uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-                console.log('File available at', downloadURL);
-                userImgURL = downloadURL;
-                userDisplayImg.attr("src", downloadURL);
-                userDisplayImg.addClass("userImage")
-                $("#uploadedImg").html(userDisplayImg);
-            });
-        });
+    var uploadTask = storageRef.put(selectedFile);
+    $("#uploadedImg").html("<img class='animated infinite rotateIn rotateOut loading' src='assets/images/logo_small.svg'>");
+    uploadTask.on('state_changed', function (snapshot) {
+    //progression of upload
+    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    console.log('Upload is ' + progress + '% done');
+    switch (snapshot.state) {
+        case firebase.storage.TaskState.PAUSED: // or 'paused'
+        console.log('Upload is paused');
+        break;
+        case firebase.storage.TaskState.RUNNING: // or 'running'
+        console.log('Upload is running');
+        break;
+    }
+    }, function (error) {
+    // Handle unsuccessful uploads
+    }, function () {
+        // Handle successful uploads on complete
+        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+        uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+        console.log('File available at', downloadURL);
+        userImgURL = downloadURL;
+        userDisplayImg.attr("src", downloadURL);
+        userDisplayImg.addClass("userImage")
+        $("#uploadedImg").html(userDisplayImg);
     });
 ```
 
