@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -8,21 +7,13 @@
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="assets/favicon/site.webmanifest">
-    <link rel="mask-icon" href="assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
-    <!-- Css BootStrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" integrity="sha384-OHBBOqpYHNsIqQy8hL1U+8OXf9hH6QRxi0+EODezv82DfnZoV7qoHAZDwMwEJvSw" crossorigin="anonymous">
-    <!-- CSS -->
     <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
-
 <body>
-    <!-- Sticky NavBar -->
     <nav class="foodtronav navbar sticky-top navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="#top">
             <img class="logo" src="assets/images/logo.svg">
@@ -47,7 +38,6 @@
             </ul>
         </div>
     </nav>
-    <!-- JumboTron(Covers Whole page, inc NavBar) -->
     <section id="top">
         <div class="jumbotron jumbotron-fluid">
             <div class="arrow-container">
@@ -58,7 +48,6 @@
         </div>
     </section>
     <div class="container">
-        <!-- End of "page 1" -->
         <section id="about">
             <div class="card my-4" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="500">
                 <div class="card-body row justify-content-center">
@@ -173,7 +162,6 @@
                 </div>
             </div>
         </section>
-        <!-- Page 2 -->
         <section id="getStarted">
             <div class="card my-2" id="userForm" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="500">
                 <div class="card-body">
@@ -206,7 +194,6 @@
                                 <button id="submitImage" class="btn btn-primary">Upload</button>
                             </div>
                         </div>
-                        <!-- drop down for food selections -->
                         <div class="form-row justify-content-center">
                             <div class="form-group col-md-4 col-sm-12">
                                 <p>What are you hungry for?</p>
@@ -215,7 +202,6 @@
                                 </select>
                             </div>
                             <br>
-                            <!-- Dropdown 2 for meal - 'timePref' -->
                             <div class="form-group col-md-4 col-sm-12">
                                 <p>When do you wanna eat?</p>
                                 <select id="timePref" class="custom-select">
@@ -240,7 +226,6 @@
                 </div>
             </div>
         </section>
-        <!-- Restaurant Section, page 4 -->
         <div class="card my-2 d-none" id="restaurant-list">
             <div class="card-body">
                 <div id="restSection">
@@ -249,7 +234,6 @@
                 </div>
             </div>
         </div>
-        <!-- Buddy Search results, page 5 -->
         <div class="card d-none" id="buddy-list">
             <div class="card-body" id="restaurant-info">
             </div>
@@ -259,34 +243,24 @@
             </div>
         </div>
     </div>
-    <!-- 2 Divs close container, and Jumbotron  -->
-    <!-- Sticky Bottom -->
     <footer>
         <div class="container text-center footer">
             <p>Copyright &copy; Foodtroverts 2018</p>
         </div>
     </footer>
-    <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <!-- SMOOTH SCROLL -->
     <script>
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
-
             document.querySelector(this.getAttribute('href')).scrollIntoView({
                 behavior: 'smooth'
             });
         });
     });
     </script>
-    <!-- End of SMOOTH SCROLL -->
-    <!-- Firebase Reference -->
     <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
-    <!-- Bootstrap -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-    <!-- JavaScript -->
     <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
     <script src="assets/javascript/app.js"></script>
     <script>
@@ -298,5 +272,4 @@
     })
     </script>
 </body>
-
 </html>
