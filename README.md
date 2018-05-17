@@ -3,7 +3,7 @@
 
 Ever been hungry but wanted some company, or just some good food and conversation? Are all of your friends busy during your lunch hours? Maybe there is a new place you want to try in your area but your tastebuds are more adventurous than the people you would usually eat out with? Good news… We’re here to help!
 
-![demo](webdemo.gif)
+![demo](demo.gif)
 
 # Getting Started :spaghetti:
 
