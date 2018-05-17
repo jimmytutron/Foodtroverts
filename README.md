@@ -40,7 +40,7 @@ A presentation of our application that goes in depth about the technolgies we us
 
 ## Acknowledgments :pray:
 
-Thanks to the following people for their beautiful :sparkles:animations:sparkles: libraries! And Unsplash for their amazing royalty free photography
+Thanks to the following people for their beautiful :sparkles:animations:sparkles: libraries and Unsplash for their photos!
 
 * [Animate.css](https://daneden.github.io/animate.css/) - [Daniel Eden](https://daneden.me/)
 * [AOS - Animate of Scroll Library](https://michalsnik.github.io/aos/) - [Michal Snik](https://github.com/michalsnik)
