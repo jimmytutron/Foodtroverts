@@ -6,6 +6,7 @@ body {
     -o-background-size: cover; 
     background-size: cover;
     overflow: visible;
+    font-family: 'Montserrat', sans-serif;
 }
 
 h1 {
@@ -66,6 +67,10 @@ a.nav-item.nav-link.active {
     margin-right: auto;
 }
 
+.reviews {
+    font-size: 1.1em;
+}
+
 .logo{
     height: 40px;
 }
@@ -88,14 +93,13 @@ a.navbar-brand {
 
 /* carousel */
 .carousel-inner{
-    height: 90px;
-    font-size: 12px;
+    height: 150px;
 }
-
-.reviews{
-
+@media screen and (max-width: 767px){
+.carousel-inner{
+    height: auto;
 }
-
+}
 
 .arrow{
  display: block;
