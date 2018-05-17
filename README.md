@@ -54,7 +54,7 @@ and of course a big thank you to our instructor and TAs, without their help we w
 
 
 
-## Relevant snippets of code
+## Relevant snippets of code :tea:
 
 ### Animate on Scroll (AOS)
 
