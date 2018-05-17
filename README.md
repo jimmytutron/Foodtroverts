@@ -4,6 +4,7 @@
 Ever been hungry but wanted some company, or just some good food and conversation? Are all of your friends busy during your lunch hours? Maybe there is a new place you want to try in your area but your tastebuds are more adventurous than the people you would usually eat out with? Good news… We’re here to help!
 
 ![demo](demo.gif)
+![demo](FoodTrovert_Step6.gif)
 
 # Getting Started :spaghetti:
 
@@ -50,3 +51,106 @@ Thanks to the following people for their beautiful :sparkles:animations:sparkles
 * [Unsplash](https://unsplash.com/) - Attribution free photography
 
 and of course a big thank you to our instructor and TAs, without their help we would have been pulling our hair out. :grimacing:
+
+
+
+# Relavent sample code snippets:
+
+## Example of AOS:
+Applying AOS for element to fade from the left and modifying AOS settings.
+```        
+        <section id="howTo">
+            <div class="card my-4" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="500">
+                <div class="card-body row justify-content-center">
+                    <div class="col-lg-6">
+                        <h1>How To</h1>
+                        <p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+```
+
+## Example of Animate.css as a loading image during AJAX call:
+Utilizing Animate.css to apply an inifinite loop on an image, and removal based on ID "restaurantP" upon completion of an AJAX call.
+```        
+        $("#restaurantP").append("<img class='animated infinite rotateIn rotateOut loadingRest' src='assets/images/logo_small.svg'>");
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+            $("#restaurantP img:last-child").remove();
+            ...
+        });
+```
+
+## Example of Firebase Storage(JavaScript):
+Uploading an image/file to Firebase storage, providing a loading image, and retrieving url for download.
+
+```        
+    var storageRef;
+
+    $("#file").on("change", function (event) {
+        selectedFile = event.target.files[0];
+        $("#fileLabel").text(selectedFile.name);
+    });
+
+    $("#submitImage").on("click", function () {
+        event.preventDefault();
+        var fileName = selectedFile.name;
+        storageRef = firebase.storage().ref("images/" + fileName);
+
+        var uploadTask = storageRef.put(selectedFile);
+        $("#uploadedImg").html("<img class='animated infinite rotateIn rotateOut loading' src='assets/images/logo_small.svg'>");
+        uploadTask.on('state_changed', function (snapshot) {
+            //progression of upload
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress + '% done');
+            switch (snapshot.state) {
+                case firebase.storage.TaskState.PAUSED: // or 'paused'
+                    console.log('Upload is paused');
+                    break;
+                case firebase.storage.TaskState.RUNNING: // or 'running'
+                    console.log('Upload is running');
+                    break;
+            }
+        }, function (error) {
+            // Handle unsuccessful uploads
+        }, function () {
+            // Handle successful uploads on complete
+            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+            uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                console.log('File available at', downloadURL);
+                userImgURL = downloadURL;
+                userDisplayImg.attr("src", downloadURL);
+                userDisplayImg.addClass("userImage")
+                $("#uploadedImg").html(userDisplayImg);
+            });
+        });
+    });
+```
+
+## Example of Firebase loop through children and connection key:
+Creating a connection with variable "con", storing user input into firebase, looping through connections to compare.
+```        
+connectedRef.on("value", function (snap) {
+    var con = connectionsRef.push(userObj);
+    var newID = con.getKey();
+
+    database.ref("/connections").on("child_added", function (childSnapshot) {
+
+        var matchRestID = childSnapshot.val()["rest ID"];
+        var matchUniqueID = childSnapshot.key;
+        var matchTimePref = childSnapshot.val()["preference time"];
+
+        if ((matchRestID === userObj["rest ID"]) && (matchTimePref === userObj["preference time"]) && (newID !== matchUniqueID)) {
+        ...
+        } else {
+        ...
+        }
+    }
+    con.onDisconnect().remove()
+}
+
