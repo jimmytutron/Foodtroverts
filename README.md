@@ -46,7 +46,7 @@ A presentation of our application that goes in depth about the technolgies we us
 Thanks to the following people for their beautiful :sparkles:animations:sparkles: libraries and Unsplash for their photos!
 
 * [Animate.css](https://daneden.github.io/animate.css/) - [Daniel Eden](https://daneden.me/)
-* [AOS - Animate of Scroll Library](https://michalsnik.github.io/aos/) - [Michal Snik](https://github.com/michalsnik)
+* [AOS - Animate of Scroll Library](https://michalsnik.github.io/aos/) - [Michał Sajnóg](https://github.com/michalsnik)
 * [Unsplash](https://unsplash.com/) - Attribution free photography
 
 and of course a big thank you to our instructor and TAs, without their help we would have been pulling our hair out. :grimacing:
