@@ -3,6 +3,8 @@
 
 Ever been hungry but wanted some company, or just some good food and conversation? Are all of your friends busy during your lunch hours? Maybe there is a new place you want to try in your area but your tastebuds are more adventurous than the people you would usually eat out with? Good news… We’re here to help!
 
+![demo](webdemo.gif)
+
 # Getting Started :spaghetti:
 
 Simply navigate to ‘Get Started’ by either clicking the navigation link at the top or scrolling to the bottom of the page. There you will see a form to fill out. Fill in your name, upload a selfie, pick your food preference and a time, enter a zip code or city and wala~ The app will the populate the closest restaurants near you.
@@ -15,7 +17,6 @@ Foodtroverts is a platform built with the intention of bringing people together,
 
 What do you have to lose? Get started today!
 
-![demo](webdemo.gif)
 
 ## Use the app! :ice_cream:
 Launch Foodtroverts [here!](https://jimmytutron.github.io/Foodtroverts/)
