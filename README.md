@@ -3,8 +3,8 @@
 
 Ever been hungry but wanted some company, or just some good food and conversation? Are all of your friends busy during your lunch hours? Maybe there is a new place you want to try in your area but your tastebuds are more adventurous than the people you would usually eat out with? Good news… We’re here to help!
 
-![demo](demo.gif)
-![demo](FoodTrovert_Step6.gif)
+![demo](demo1.gif)
+![demo](demo2.gif)
 
 # Getting Started :spaghetti:
 
@@ -54,11 +54,13 @@ and of course a big thank you to our instructor and TAs, without their help we w
 
 
 
-# Relavent sample code snippets:
+## Relevant snippets of code
 
-## Example of AOS:
-Applying AOS for element to fade from the left and modifying AOS settings.
-```        
+### Animate on Scroll (AOS)
+
+Applying AOS for element to fade in from the left and modifying its duration and transition animations
+
+```html        
         <section id="howTo">
             <div class="card my-4" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="500">
                 <div class="card-body row justify-content-center">
@@ -72,9 +74,9 @@ Applying AOS for element to fade from the left and modifying AOS settings.
         </section>
 ```
 
-## Example of Animate.css as a loading image during AJAX call:
-Utilizing Animate.css to apply an inifinite loop on an image, and removal based on ID "restaurantP" upon completion of an AJAX call.
-```        
+### Using Animate.css to create a loading icon
+
+```javascript      
         $("#restaurantP").append("<img class='animated infinite rotateIn rotateOut loadingRest' src='assets/images/logo_small.svg'>");
 
         $.ajax({
@@ -86,10 +88,11 @@ Utilizing Animate.css to apply an inifinite loop on an image, and removal based 
         });
 ```
 
-## Example of Firebase Storage(JavaScript):
+### Using Firebase Storage
+
 Uploading an image/file to Firebase storage, providing a loading image, and retrieving url for download.
 
-```        
+```javascript        
     var storageRef;
 
     $("#file").on("change", function (event) {
@@ -132,9 +135,11 @@ Uploading an image/file to Firebase storage, providing a loading image, and retr
     });
 ```
 
-## Example of Firebase loop through children and connection key:
+### Looping through data stored in Firebase
+
 Creating a connection with variable "con", storing user input into firebase, looping through connections to compare.
-```        
+
+```javascript        
 connectedRef.on("value", function (snap) {
     var con = connectionsRef.push(userObj);
     var newID = con.getKey();
@@ -150,7 +155,5 @@ connectedRef.on("value", function (snap) {
         } else {
         ...
         }
-    }
-    con.onDisconnect().remove()
-}
+```
 
