@@ -15,6 +15,8 @@ Foodtroverts is a platform built with the intention of bringing people together,
 
 What do you have to lose? Get started today!
 
+![demo](webdemo.gif)
+
 ## Use the app! :ice_cream:
 Launch Foodtroverts [here!](https://jimmytutron.github.io/Foodtroverts/)
 
