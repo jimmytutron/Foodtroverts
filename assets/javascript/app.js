@@ -2,14 +2,14 @@ $(document).ready(function () {
     //=========================GLOBAL===============================//
     // Initialize Firebase
     var config = {
-        apiKey: "AIzaSyCOSZbFya-dU4ArdvJH1Ky343FY1Y6lhU8",
-        authDomain: "thedemo-833f6.firebaseapp.com",
-        databaseURL: "https://thedemo-833f6.firebaseio.com",
-        projectId: "thedemo-833f6",
-        storageBucket: "thedemo-833f6.appspot.com",
-        messagingSenderId: "932306555354"
-    };
-    firebase.initializeApp(config);
+        apiKey: "AIzaSyDQhnkQVQxYFIzpHHe3f9j46KYowZpgGRg",
+        authDomain: "foodtroverts-1525972295801.firebaseapp.com",
+        databaseURL: "https://foodtroverts-1525972295801.firebaseio.com",
+        projectId: "foodtroverts-1525972295801",
+        storageBucket: "foodtroverts-1525972295801.appspot.com",
+        messagingSenderId: "945445095089"
+      };
+      firebase.initializeApp(config);
 
     var database = firebase.database();
 
@@ -24,12 +24,7 @@ $(document).ready(function () {
 
     
     var timePrefArr = ["6:00 AM", "7:00 AM", "8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM", "7:00 PM", "8:00 PM", "9:00 PM"];
-
-    var selectedRestName = "";
-    var selectedRestAddress = "";
-    var selectedRestImgUrl = "";
-
-
+    
     for (var i = 0; i < foodPrefArr.length; i++) {
         var foodOption = $("<option>");
         foodOption.attr("value", foodPrefArr[i]);
@@ -125,7 +120,7 @@ $(document).ready(function () {
                     console.log(userObj);
 
                     //=====IPData=======/
-                    $.get("https://api.ipdata.co/", function (res) {
+                    $.get(" https://api.ipdata.co?api-key=218a0d03983a403708b94dd833c2ec2aabecba02eb8675d5dec31f97", function (res) {
 
                         if (userLoc === "") {
                             var currentCity = res["postal"];
@@ -204,6 +199,7 @@ $(document).ready(function () {
                     // $("#warningModal").modal('show');
                     // alert("Fill it out");
                 }
+
                 //
             });
 
